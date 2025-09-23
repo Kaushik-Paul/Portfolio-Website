@@ -43,11 +43,56 @@ body {
     50% { transform: translateY(-10px); }
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+        margin: 1rem;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+    }
+    
+    .project-svg {
+        max-height: 120px;
+        margin: 1rem 0;
+    }
+    
+    .redirect-info {
+        font-size: 0.9rem;
+    }
+}
+
 .logo {
     width: 80px;
     height: 80px;
     margin: 0 auto 1.5rem;
     display: block;
+}
+
+.project-svg {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;  /* Reduced from 200px to 150px */
+    margin: 1rem 0;     /* Reduced margin for better spacing */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {

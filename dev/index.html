@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaushik Paul | AI Projects Portfolio</title>
+    <title>Kaushik Paul | Projects Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="resources/rocket-blue.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,8 +49,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Auto AI Agents Creator</h3>
-                        <p>An intelligent system for creating and managing AI agents with minimal human intervention.</p>
-                        <a href="ai-agents.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <p>AI agents that collaborate to generate and refine ideas using Microsoft Autogen, with professional response handling.</p>
+                        <a href="redirects/ai-agents.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
 
@@ -59,8 +60,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Stock Picker</h3>
-                        <p>AI-powered stock analysis and recommendation system for informed investment decisions.</p>
-                        <a href="stock-picker.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <p>AI-powered stock analysis that identifies trending companies and delivers investment insights with automated research.</p>
+                        <a href="redirects/stock-picker.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
 
@@ -70,8 +71,8 @@
                     </div>
                     <div class="project-info">
                         <h3>AI Agentic Coder</h3>
-                        <p>An autonomous coding assistant that can understand and generate code based on requirements.</p>
-                        <a href="ai-coder.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <p>Multi-agent AI that transforms ideas into production-ready apps, handling coding, testing, and deployment.</p>
+                        <a href="redirects/ai-coder.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
 
@@ -81,8 +82,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Career Conversation</h3>
-                        <p>An AI assistant designed to provide career guidance and professional development advice.</p>
-                        <a href="career-conversation.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <p>AI assistant for professional profiles, providing career insights and answering experience-related questions.</p>
+                        <a href="redirects/career-conversation.html" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
                     </div>
                 </div>
             </div>
@@ -137,18 +138,24 @@
             duration: 800,
             once: true
         });
-
+    </script>
+    <script>
         // Handle project redirects
         function redirectToProject(project) {
-            // Store the project in session storage
-            sessionStorage.setItem('redirectProject', project);
+            // This function is no longer needed as we're using direct links
+            // Keeping it for backward compatibility
+            const projectUrls = {
+                'ai-agents': 'https://huggingface.co/spaces/kaushikpaul/Auto-AI-Agents-Creator',
+                'stock-picker': 'https://huggingface.co/spaces/kaushikpaul/Stock-Picker',
+                'ai-coder': 'https://huggingface.co/spaces/kaushikpaul/AI-Agentic-Coder',
+                'career-conversation': 'https://huggingface.co/spaces/kaushikpaul/Career-Conversation'
+            };
             
-            // Redirect to the redirect page
-            window.location.href = 'redirect.html';
-            
-            // Prevent default link behavior
-            return false;
+            if (projectUrls[project]) {
+                window.location.href = projectUrls[project];
+            }
         }
     </script>
+    <script src="app.js"></script>
 </body>
 </html>
