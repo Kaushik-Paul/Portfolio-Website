@@ -1,8 +1,8 @@
-# Cloudflare Pages redirects
-/ai-agents /redirects/ai-agents 200
-/stock-picker /redirects/stock-picker 200
-/ai-coder /redirects/ai-coder 200
-/career-conversation /redirects/career-conversation 200
+# Cloudflare Pages redirects - using 302 (temporary) redirects
+/ai-agents /redirects/ai-agents.html 302
+/stock-picker /redirects/stock-picker.html 302
+/ai-coder /redirects/ai-coder.html 302
+/career-conversation /redirects/career-conversation.html 302
 
-# Single-page app (SPA) catch-all
+# SPA catch-all - return 200 for all other requests
 /* /index.html 200
