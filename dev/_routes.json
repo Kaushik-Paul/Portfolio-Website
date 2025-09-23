@@ -2,18 +2,20 @@
   "version": 1,
   "include": ["/*"],
   "exclude": [
-    "/*",
     "/index.html",
-    "/redirect.html",
+    "/ai-agents.html",
+    "/stock-picker.html",
+    "/ai-coder.html",
+    "/career-conversation.html",
     "/style.css",
     "/app.js",
     "/resources/*"
   ],
   "routes": [
-    {"handle": "rewrite", "src": "/ai-agents(/?)*", "dest": "/redirect.html?project=ai-agents"},
-    {"handle": "rewrite", "src": "/stock-picker(/?)*", "dest": "/redirect.html?project=stock-picker"},
-    {"handle": "rewrite", "src": "/ai-coder(/?)*", "dest": "/redirect.html?project=ai-coder"},
-    {"handle": "rewrite", "src": "/career-conversation(/?)*", "dest": "/redirect.html?project=career-conversation"},
-    {"handle": "filesystem"}
+    {"handle": "rewrite", "src": "/ai-agents/?*", "dest": "/ai-agents.html"},
+    {"handle": "rewrite", "src": "/stock-picker/?*", "dest": "/stock-picker.html"},
+    {"handle": "rewrite", "src": "/ai-coder/?*", "dest": "/ai-coder.html"},
+    {"handle": "rewrite", "src": "/career-conversation/?*", "dest": "/career-conversation.html"},
+    {"src": "/*", "dest": "/index.html", "status": 200}
   ]
 }
