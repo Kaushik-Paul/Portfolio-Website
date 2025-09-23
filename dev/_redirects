@@ -1,7 +1,7 @@
 # Cloudflare Pages redirects - using 302 (temporary) redirects
-/ai-agents /redirects/ai-agents.html 302
+/auto-ai-agents /redirects/ai-agents.html 302
 /stock-picker /redirects/stock-picker.html 302
-/ai-coder /redirects/ai-coder.html 302
+/ai-agentic-coder /redirects/ai-coder.html 302
 /career-conversation /redirects/career-conversation.html 302
 
 # SPA catch-all - return 200 for all other requests
