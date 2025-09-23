@@ -177,14 +177,173 @@ button {
     color: var(--text-color-light);
 }
 
-/* Media Queries for Responsive Design */
-@media screen and (max-width: 768px) {
+/* ===== MEDIA QUERIES ===== */
+/* For medium devices */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .section {
+        padding: 4rem 0;
+    }
+    
+    .section__title {
+        font-size: var(--h2-font-size);
+        margin-bottom: var(--mb-2);
+    }
+    
+    .section__subtitle {
+        margin-bottom: var(--mb-2);
+    }
+    
+    /* Home Section */
+    .home__content {
+        text-align: center;
+        padding-top: 2rem;
+    }
+    
+    .home__title {
+        font-size: 2rem;
+    }
+    
+    .home__profession {
+        font-size: 1.25rem;
+    }
+    
+    .home__buttons {
+        justify-content: center;
+    }
+    
+    /* Navigation */
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        padding: 6rem 2rem 0;
+        background-color: var(--container-color);
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        z-index: var(--z-fixed);
+    }
+    
+    .nav__list {
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+    
+    .nav__toggle, .nav__close {
+        display: block;
+    }
+    
+    /* Show menu */
+    .show-menu {
+        right: 0;
+    }
+    
+    /* Skills Section */
     .skills__content {
-        padding: 1.5rem 2rem;
+        padding: 1.5rem 1rem;
     }
     
     .skills__box {
         grid-template-columns: 1fr;
+    }
+    
+    /* Experience Section */
+    .experience__item {
+        padding-left: 1.5rem;
+    }
+    
+    /* Contact Section */
+    .contact__info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 576px) {
+    :root {
+        --big-font-size: 2rem;
+        --h1-font-size: 1.75rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+    }
+    
+    .home__title {
+        font-size: 1.75rem;
+    }
+    
+    .home__profession {
+        font-size: 1.1rem;
+    }
+    
+    .button {
+        padding: 0.75rem 1.5rem;
+    }
+    
+    .home__buttons {
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+    
+    .home__buttons .button:first-child {
+        margin-right: 0;
+    }
+    
+    /* Navigation */
+    .nav__menu {
+        width: 80%;
+    }
+    
+    /* Skills */
+    .skills__content {
+        padding: 1.25rem 1rem;
+    }
+    
+    /* Footer */
+    .footer__social {
+        column-gap: 1rem;
+    }
+    
+    .footer__copy {
+        font-size: var(--smaller-font-size);
+    }
+}
+
+/* For very small devices */
+@media screen and (max-width: 350px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    :root {
+        --big-font-size: 1.75rem;
+        --h1-font-size: 1.5rem;
+        --h2-font-size: 1.25rem;
+    }
+    
+    .home__title {
+        font-size: 1.5rem;
+    }
+    
+    .home__profession {
+        font-size: 1rem;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .section__title {
+        margin-bottom: var(--mb-1-5);
+    }
+    
+    .nav__menu {
+        width: 90%;
     }
 }
 
