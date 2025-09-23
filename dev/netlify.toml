@@ -1,0 +1,24 @@
+[[redirects]]
+  from = "/ai-agents"
+  to = "/redirects/ai-agents.html"
+  status = 200
+
+[[redirects]]
+  from = "/stock-picker"
+  to = "/redirects/stock-picker.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-coder"
+  to = "/redirects/ai-coder.html"
+  status = 200
+
+[[redirects]]
+  from = "/career-conversation"
+  to = "/redirects/career-conversation.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -3,3 +3,6 @@
 /stock-picker /redirects/stock-picker.html 200
 /ai-coder /redirects/ai-coder.html 200
 /career-conversation /redirects/career-conversation.html 200
+
+# Catch-all rule last
+/* /index.html 200
