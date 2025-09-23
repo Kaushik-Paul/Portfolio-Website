@@ -12,10 +12,10 @@
     "/resources/*"
   ],
   "routes": [
-    {"handle": "rewrite", "src": "/ai-agents/?*", "dest": "/ai-agents.html"},
-    {"handle": "rewrite", "src": "/stock-picker/?*", "dest": "/stock-picker.html"},
-    {"handle": "rewrite", "src": "/ai-coder/?*", "dest": "/ai-coder.html"},
-    {"handle": "rewrite", "src": "/career-conversation/?*", "dest": "/career-conversation.html"},
+    {"src": "/ai-agents", "dest": "/ai-agents.html", "status": 200},
+    {"src": "/stock-picker", "dest": "/stock-picker.html", "status": 200},
+    {"src": "/ai-coder", "dest": "/ai-coder.html", "status": 200},
+    {"src": "/career-conversation", "dest": "/career-conversation.html", "status": 200},
     {"src": "/*", "dest": "/index.html", "status": 200}
   ]
 }
