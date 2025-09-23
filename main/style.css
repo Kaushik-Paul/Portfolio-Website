@@ -146,7 +146,7 @@ body {
 
 /* ===== HEADER & NAVIGATION ===== */
 :root {
-    --header-height: 2.75rem;
+    --header-height: 2rem;
 }
 
 .header {
@@ -182,6 +182,10 @@ body {
     display: flex;
     align-items: center;
     margin-left: auto; /* Push menu to the right */
+    position: relative; /* default inline in header */
+    background: transparent;
+    box-shadow: none;
+    height: auto;
 }
 
 .nav__list {
@@ -223,15 +227,22 @@ body {
 
 /* Ensure navigation is visible on desktop */
 @media screen and (min-width: 768px) {
+    /* Ensure mobile-open state never affects desktop */
+    .nav__menu.show-menu {
+        right: auto !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
     .nav__menu {
-        position: static;
-        right: auto;
-        width: auto;
-        max-width: none;
-        height: auto;
-        padding: 0;
-        background: transparent;
-        box-shadow: none;
+        position: static !important;
+        right: 0 !important;
+        width: auto !important;
+        max-width: none !important;
+        height: auto !important;
+        padding: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
         display: flex !important;
         flex-direction: row;
         align-items: center;
@@ -247,6 +258,7 @@ body {
         column-gap: 1rem;
         padding: 0;
         display: flex !important;
+        align-items: center;
     }
     
     .nav__link {
@@ -259,64 +271,74 @@ body {
     }
 }
 
-/* Scroll to top button */
-.scrollup {
+/* Scroll buttons common styles */
+.scrollup,
+.scrolldown {
     position: fixed;
-    right: 2rem;
-    bottom: -20%;
+    right: 1.5rem;
     background-color: var(--first-color);
-    opacity: 0.8;
+    opacity: 0;
     padding: 0.5rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem; /* Slightly more rounded corners to match scroll-up style */
     z-index: var(--z-tooltip);
-    transition: 0.4s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
+    color: var(--container-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.scrollup:hover {
+/* Scroll button hover effects */
+.scrollup:hover,
+.scrolldown:hover {
     background-color: var(--first-color-alt);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     opacity: 1;
 }
 
-.scrollup__icon {
+/* Icons */
+.scrollup i,
+.scrolldown i {
     font-size: 1.25rem;
-    color: #fff;
+    color: var(--container-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* Show scroll up */
 .scrollup.show-scroll {
-    bottom: 3rem;
-}
-
-/* Scroll down button */
-.scrolldown {
-    position: fixed;
-    right: 2rem;
-    bottom: -20%;
-    background-color: var(--first-color);
-    opacity: 0.8;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    z-index: var(--z-tooltip);
-    transition: 0.4s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-}
-
-.scrolldown:hover {
-    background-color: var(--first-color-alt);
+    bottom: 5rem;
     opacity: 1;
 }
 
+/* Show scroll down */
 .scrolldown.show-scroll {
-    bottom: 1rem;
+    bottom: 1.5rem;
+    opacity: 1;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 767px) {
+    .scrollup,
+    .scrolldown {
+        right: 1rem;
+        border-radius: 0.5rem; /* Match the desktop style */
+    }
+    
+    .scrollup.show-scroll {
+        bottom: 5rem;
+    }
+    
+    .scrolldown.show-scroll {
+        bottom: 1.5rem;
+    }
 }
 
 /* Mobile menu toggle - hidden by default */
@@ -334,13 +356,14 @@ body {
 
 /* Mobile styles */
 @media screen and (max-width: 767px) {
+    .container { padding: 0 1rem; }
     .nav__menu {
         position: fixed;
         top: 0;
         right: -100%;
         width: 80%;
         max-width: 300px;
-        height: 100vh;
+        height: 100dvh; /* use dynamic viewport height for mobile */
         padding: 5rem 2rem;
         background-color: var(--container-color);
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
@@ -351,11 +374,13 @@ body {
         display: flex !important;
         opacity: 0;
         visibility: hidden;
+        pointer-events: none; /* prevent hidden menu from capturing taps */
     }
     
     .nav__toggle,
     .nav__close {
         display: block;
+        padding: 0.75rem; /* bigger touch target */
     }
     
     .nav__close {
@@ -368,6 +393,7 @@ body {
         right: 0;
         opacity: 1;
         visibility: visible;
+        pointer-events: auto;
     }
 
     .nav__list {

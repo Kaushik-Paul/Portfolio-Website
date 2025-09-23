@@ -7,9 +7,9 @@
       <stop offset="100%" stop-color="#5a52d3"/>
     </linearGradient>
   </defs>
-  <rect width="256" height="256" rx="48" ry="48" fill="#ffffff"/>
+  <rect width="256" height="256" rx="36" ry="36" fill="#ffffff"/>
   <!-- Rocket body -->
-  <g transform="translate(40,20) rotate(15,88,108)">
+  <g transform="translate(10,-10) scale(1.35) rotate(15,88,108)">
     <path d="M88 8c28 22 40 54 40 86 0 32-12 64-40 86-28-22-40-54-40-86 0-32 12-64 40-86z" fill="url(#g)"/>
     <!-- Window -->
     <circle cx="88" cy="68" r="14" fill="#fff" opacity="0.9"/>

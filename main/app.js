@@ -127,6 +127,17 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     window.addEventListener('scroll', activateMenuOnScroll);
     activateMenuOnScroll();
+
+    // Reset mobile menu state when resizing to desktop
+    const resetMenuOnResize = () => {
+        if (window.innerWidth >= 768 && navMenu) {
+            navMenu.classList.remove('show-menu');
+            // Ensure desktop styles apply
+            navMenu.style.right = '';
+        }
+    };
+    window.addEventListener('resize', resetMenuOnResize);
+    resetMenuOnResize();
 });
 
 // Loader: hide after window load
