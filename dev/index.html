@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaushik Paul | AI Projects Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">KP</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="animate-text">Hi, I'm <span class="highlight">Kaushik Paul</span></h1>
+                <h2 class="animate-text">AI & Machine Learning Enthusiast</h2>
+                <p class="animate-text">Creating intelligent solutions through innovative AI applications</p>
+                <a href="#projects" class="cta-button animate-text">View My Work</a>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="fade-up">
+                    <div class="project-image">
+                        <img src="resources/ai-agents.svg" alt="AI Agents" class="project-svg">
+                    </div>
+                    <div class="project-info">
+                        <h3>Auto AI Agents Creator</h3>
+                        <p>An intelligent system for creating and managing AI agents with minimal human intervention.</p>
+                        <a href="#" onclick="redirectToProject('ai-agents')" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="resources/stock-picker.svg" alt="Stock Picker" class="project-svg">
+                    </div>
+                    <div class="project-info">
+                        <h3>Stock Picker</h3>
+                        <p>AI-powered stock analysis and recommendation system for informed investment decisions.</p>
+                        <a href="#" onclick="redirectToProject('stock-picker')" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="resources/ai-coder.svg" alt="AI Coder" class="project-svg">
+                    </div>
+                    <div class="project-info">
+                        <h3>AI Agentic Coder</h3>
+                        <p>An autonomous coding assistant that can understand and generate code based on requirements.</p>
+                        <a href="#" onclick="redirectToProject('ai-coder')" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <img src="resources/career-conversation.svg" alt="Career Conversation" class="project-svg">
+                    </div>
+                    <div class="project-info">
+                        <h3>Career Conversation</h3>
+                        <p>An AI assistant designed to provide career guidance and professional development advice.</p>
+                        <a href="#" onclick="redirectToProject('career-conversation')" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-content">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-text" data-aos="fade-right">
+                    <p>I'm an AI and Machine Learning enthusiast passionate about creating intelligent solutions that solve real-world problems. With expertise in developing AI applications, I specialize in building systems that learn and adapt.</p>
+                    <p>My projects focus on leveraging cutting-edge AI technologies to create practical and impactful solutions across various domains.</p>
+                </div>
+                <div class="skills" data-aos="fade-left">
+                    <h3>Skills & Technologies</h3>
+                    <div class="skills-grid">
+                        <div class="skill">
+                            <i class="fas fa-brain"></i>
+                            <span>Machine Learning</span>
+                        </div>
+                        <div class="skill">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Development</span>
+                        </div>
+                        <div class="skill">
+                            <i class="fas fa-code"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill">
+                            <i class="fas fa-database"></i>
+                            <span>Data Science</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2025 Kaushik Paul. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Handle project redirects
+        function redirectToProject(project) {
+            // Store the project in session storage
+            sessionStorage.setItem('redirectProject', project);
+            
+            // Redirect to the redirect page
+            window.location.href = 'redirect.html';
+            
+            // Prevent default link behavior
+            return false;
+        }
+    </script>
+</body>
+</html>
