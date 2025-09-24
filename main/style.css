@@ -1486,7 +1486,7 @@ section {
 
     .nav__list {
         flex-direction: row;
-        column-gap: 3.5rem;
+        column-gap: 0.5rem;
     }
 
     .nav__toggle,
