@@ -192,4 +192,99 @@ document.addEventListener('DOMContentLoaded', function() {
     sections.forEach(section => {
         section.classList.add('animate-on-scroll');
     });
+
+    // Initialize 404 page animations if on 404 page
+    init404Animations();
 });
+
+// 404 Page Animations
+function init404Animations() {
+    const rocket = document.querySelector('.error-page .rocket i');
+    const planet = document.querySelector('.planet');
+    
+    if (!rocket || !planet) return;
+
+    // Rocket launch animation on hover
+    rocket.addEventListener('mouseenter', function() {
+        this.style.animation = 'rocketLaunch 1s forwards';
+        
+        // Add shooting stars after rocket launches
+        setTimeout(() => {
+            createShootingStars();
+        }, 500);
+    });
+
+    // Reset rocket animation when mouse leaves
+    rocket.addEventListener('animationend', function() {
+        if (this.style.animationName === 'rocketLaunch') {
+            setTimeout(() => {
+                this.style.animation = 'none';
+                this.offsetHeight; // Trigger reflow
+                this.style.animation = 'float 3s ease-in-out infinite';
+            }, 2000);
+        }
+    });
+
+    // Create shooting stars
+    function createShootingStars() {
+        const animationContainer = document.querySelector('.error__animation');
+        if (!animationContainer) return;
+
+        for (let i = 0; i < 3; i++) {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.innerHTML = '✦';
+            
+            // Random position
+            const startX = Math.random() * 100;
+            const startY = Math.random() * 50;
+            const endX = startX + 20 + Math.random() * 60;
+            const endY = startY + 20 + Math.random() * 60;
+            
+            star.style.left = `${startX}%`;
+            star.style.top = `${startY}%`;
+            star.style.animation = `shootingStar ${1 + Math.random()}s linear forwards`;
+            star.style.setProperty('--end-x', `${endX}%`);
+            star.style.setProperty('--end-y', `${endY}%`);
+            
+            animationContainer.appendChild(star);
+            
+            // Remove star after animation
+            star.addEventListener('animationend', function() {
+                star.remove();
+            });
+        }
+    }
+
+    // Add styles for shooting stars if they don't exist
+    if (!document.getElementById('404-animations-style')) {
+        const style = document.createElement('style');
+        style.id = '404-animations-style';
+        style.textContent = `
+            @keyframes rocketLaunch {
+                0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                30% { transform: translate(-50%, -50%) scale(1.2); }
+                100% { transform: translate(200%, -200%) scale(0.5); opacity: 0; }
+            }
+            
+            .shooting-star {
+                position: absolute;
+                color: #fff;
+                font-size: 1.5rem;
+                opacity: 0.8;
+                z-index: 1;
+                animation: shootingStar 1s linear forwards;
+            }
+            
+            @keyframes shootingStar {
+                to {
+                    left: var(--end-x, 100%);
+                    top: var(--end-y, 0);
+                    opacity: 0;
+                    transform: scale(0.5);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
