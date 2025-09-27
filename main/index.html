@@ -25,6 +25,11 @@
                     <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
                     <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
                     <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                    <li class="nav__item">
+                        <a href="https://projects.kaushikpaul.pp.ua/" class="nav__link" target="_blank" rel="noopener noreferrer">
+                            Projects <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px;"></i>
+                        </a>
+                    </li>
                 </ul>
                 <div class="nav__close" id="nav-close">
                     <i class="fas fa-times"></i>
@@ -43,10 +48,12 @@
                 <div class="home__content">
                     <span class="home__subtitle">Hello, I'm</span>
                     <h1 class="home__title">Kaushik Paul</h1>
-                    <h2 class="home__profession">Software Engineer</h2>
-                    <p class="home__description">
-                        I build efficient and scalable backend systems with a passion for solving complex problems.
-                    </p>
+                    <div class="home__text-content">
+                        <h2 class="home__profession">Software Engineer</h2>
+                        <p class="home__description">
+                            I build efficient and scalable backend systems with a passion for solving complex problems.
+                        </p>
+                    </div>
                     <div class="home__buttons">
                         <a href="#contact" class="button">Contact Me</a>
                         <a href="https://storage.googleapis.com/kaushik-resources/Kaushik%20Paul%20Resume.pdf" class="button button--ghost" target="_blank" rel="noopener noreferrer">Download Resume</a>
@@ -56,9 +63,9 @@
                     <div class="home__blob">
                         <div class="home__shape"></div>
                         <div class="home__data">
-                            <span>15+</span>
-                            <span>Projects</span>
-                            <span>Completed</span>
+                            <span class="home__stat">15+</span>
+                            <span class="home__label">Projects</span>
+                            <a class="home__view-all" href="https://projects.kaushikpaul.pp.ua/" target="_blank" rel="noopener noreferrer">View All <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -155,6 +162,22 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Call-to-Action -->
+        <section class="projects-cta section" aria-labelledby="projects-cta-title">
+            <h2 class="section__title">Projects</h2>
+            <div class="projects-cta__card">
+                <h3 class="projects-cta__title" id="projects-cta-title">See More Projects</h3>
+                <p class="projects-cta__subtitle">
+                    I maintain a dedicated showcase for all of my build-outs and experiments. Explore detailed write-ups,
+                    live demos, and repository links directly from my projects hub.
+                </p>
+                <div class="projects-cta__actions">
+                    <a class="button" href="https://projects.kaushikpaul.pp.ua/" target="_blank" rel="noopener noreferrer">Visit Projects Site</a>
+                    <a class="button button--ghost" href="#contact">Request a Walkthrough</a>
                 </div>
             </div>
         </section>
