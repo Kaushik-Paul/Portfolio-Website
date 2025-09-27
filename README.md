@@ -80,11 +80,6 @@ Contributions are welcome! If you find any issues or want to suggest improvement
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📧 Contact
-
-- **Email**: [kaushik.paul@example.com](mailto:kaushik.paul@example.com)
-- **LinkedIn**: [Kaushik Paul](https://linkedin.com/in/kaushik-paul)
-- **GitHub**: [@kaushik-paul](https://github.com/kaushik-paul)
 
 ---
 
