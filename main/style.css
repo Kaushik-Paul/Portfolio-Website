@@ -644,9 +644,7 @@ textarea {
     background: var(--container-color);
     border-radius: 1.25rem;
     padding: 2rem 4rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 2rem;
-    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
 }
 
@@ -659,15 +657,17 @@ textarea {
 
 .skills__box {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
 }
 
 .skills__group {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    height: 100%;
+    align-content: start;
 }
 
 .skills__data {
@@ -675,8 +675,9 @@ textarea {
     align-items: center;
     background: var(--body-color);
     padding: 1rem;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     transition: 0.3s;
+    min-height: 60px;
 }
 
 .skills__data:hover {
@@ -1734,6 +1735,7 @@ section {
     
     .skills__group {
         grid-template-columns: 1fr;
+        height: auto;
     }
     
     .contact__info {
@@ -1836,9 +1838,11 @@ section {
     }
 
     .skills__container {
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 2rem;
-        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
     .experience__container {
