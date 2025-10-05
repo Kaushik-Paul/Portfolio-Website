@@ -1300,7 +1300,8 @@ section {
 /*===== SKILLS =====*/
 .skills__container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
     width: 100%;
     padding: 0 1rem;
 }
@@ -1336,10 +1337,9 @@ section {
 
 .skills__group {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     width: 100%;
-    max-width: 800px;
 }
 
 .skills__data {
@@ -1752,7 +1752,6 @@ section {
 @media screen and (min-width: 576px) {
     .home__container,
     .about__container,
-    .skills__container,
     .experience__container,
     .contact__container {
         grid-template-columns: 1fr;
@@ -1896,10 +1895,7 @@ section {
         height: 400px;
     }
 
-    .skills__container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 4rem;
-    }
+    /* Skills container styles moved to the main skills section for better organization */
 
     .skills__content {
         padding: 2.5rem;
