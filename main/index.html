@@ -15,12 +15,30 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.kaushikpaul.co.in/">
     
+    <!-- Crawling directives and language/hreflang -->
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="alternate" href="https://www.kaushikpaul.co.in/" hreflang="en" />
+    <link rel="alternate" href="https://www.kaushikpaul.co.in/" hreflang="x-default" />
+
+    <!-- Identity assertion for knowledge graph alignment -->
+    <link rel="me" href="https://www.linkedin.com/in/kaushik-paul-767590215">
+    <link rel="me" href="https://github.com/Kaushik-Paul">
+    <link rel="me" href="https://projects.kaushikpaul.co.in/">
+
+    <!-- Performance hints (helps Core Web Vitals) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
     <!-- Structured Data for SEO (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Kaushik Paul",
+      "givenName": "Kaushik",
+      "familyName": "Paul",
       "url": "https://kaushikpaul.co.in",
       "image": "https://storage.googleapis.com/kaushik-resources/kaushik-website-logo.jpg",
       "jobTitle": "Software Engineer",
@@ -38,7 +56,7 @@
         "addressRegion": "West Bengal",
         "addressCountry": "India"
       },
-      "email": "contact@kaushikpaul.co.in",
+      "email": "mailto:contact@kaushikpaul.co.in",
       "sameAs": [
         "https://www.linkedin.com/in/kaushik-paul-767590215",
         "https://github.com/Kaushik-Paul",
@@ -49,13 +67,66 @@
     }
     </script>
     
+    <!-- Structured Data: WebSite with SearchAction (for sitelinks search box) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kaushik Paul",
+      "url": "https://kaushikpaul.co.in",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.google.com/search?q=site%3Akaushikpaul.co.in+{search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage (content also visible below) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is Kaushik Paul?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kaushik Paul is a Software Engineer based in Kolkata, India, specializing in backend development. He focuses on building scalable systems with Python, Django, Java, and Spring Boot."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does Kaushik Paul specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Backend engineering, API design, and system performance optimization with Python, Django, Java, Spring Boot, and cloud technologies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I contact Kaushik Paul?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can reach him at contact@kaushikpaul.co.in or connect via LinkedIn at https://www.linkedin.com/in/kaushik-paul-767590215."
+          }
+        }
+      ]
+    }
+    </script>
+    
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/svg+xml" href="resources/rocket-blue.svg">
     <link rel="apple-touch-icon" href="resources/rocket-blue.svg">
     <link rel="mask-icon" href="resources/rocket-blue.svg" color="#2563eb">
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
+    <meta property="og:locale" content="en_IN">
+    <meta property="profile:first_name" content="Kaushik">
+    <meta property="profile:last_name" content="Paul">
+    <meta property="profile:username" content="kaushikpaul">
     <meta property="og:url" content="https://kaushikpaul.co.in/">
     <meta property="og:title" content="Kaushik Paul | Software Engineer">
     <meta property="og:description" content="Experienced Software Engineer with a passion for building scalable backend systems. Specializing in Python, Django, and cloud technologies.">
@@ -111,7 +182,7 @@
                     <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
                     <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                     <li class="nav__item">
-                        <a href="https://projects.kaushikpaul.co.in/" class="nav__link" target="_blank" rel="noopener noreferrer">
+                        <a href="https://projects.kaushikpaul.co.in/" class="nav__link" target="_blank" rel="me noopener noreferrer">
                             Projects <i class="fas fa-external-link-alt" style="font-size: 0.8em; margin-left: 4px;"></i>
                         </a>
                     </li>
@@ -150,7 +221,7 @@
                         <div class="home__data">
                             <span class="home__stat">15+</span>
                             <span class="home__label">Projects</span>
-                            <a class="home__view-all" href="https://github.com/Kaushik-Paul/" target="_blank" rel="noopener noreferrer">View All <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                            <a class="home__view-all" href="https://github.com/Kaushik-Paul/" target="_blank" rel="me noopener noreferrer">View All <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -456,6 +527,41 @@
             </div>
         </section>
 
+        <!-- FAQ Section (visible content matching FAQ schema) -->
+        <section class="faq section" id="faq">
+            <h2 class="section__title">FAQ</h2>
+            <span class="section__subtitle">Frequently Asked Questions</span>
+            <div class="container">
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        Who is Kaushik Paul?
+                        <span class="faq__toggle" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="faq__content">
+                        <p class="faq__answer">Kaushik Paul is a Software Engineer based in Kolkata, India, specializing in backend development. He focuses on building scalable systems with Python, Django, Java, and Spring Boot.</p>
+                    </div>
+                </details>
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        What does Kaushik Paul specialize in?
+                        <span class="faq__toggle" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="faq__content">
+                        <p class="faq__answer">Building scalable backend systems, API design, and performance optimization with Python, Django, Java, Spring Boot, and cloud technologies.</p>
+                    </div>
+                </details>
+                <details class="faq__item">
+                    <summary class="faq__question">
+                        How can I contact Kaushik?
+                        <span class="faq__toggle" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="faq__content">
+                        <p class="faq__answer">Email at <a href="mailto:contact@kaushikpaul.co.in" rel="me">contact@kaushikpaul.co.in</a> or connect on <a href="https://www.linkedin.com/in/kaushik-paul-767590215" target="_blank" rel="me noopener noreferrer">LinkedIn</a>.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section class="contact section" id="contact">
             <h2 class="section__title">Contact Me</h2>
@@ -467,7 +573,7 @@
                             <i class="fas fa-envelope"></i>
                             <h3 class="contact__card-title">Email</h3>
                             <span class="contact__card-data">contact@kaushikpaul.co.in</span>
-                            <a href="mailto:contact@kaushikpaul.co.in" class="contact__button">
+                            <a href="mailto:contact@kaushikpaul.co.in" class="contact__button" rel="me">
                                 Write me <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -475,7 +581,7 @@
                             <i class="fab fa-linkedin"></i>
                             <h3 class="contact__card-title">LinkedIn</h3>
                             <span class="contact__card-data">Kaushik Paul</span>
-                            <a href="https://www.linkedin.com/in/kaushik-paul-767590215" target="_blank" class="contact__button">
+                            <a href="https://www.linkedin.com/in/kaushik-paul-767590215" target="_blank" rel="me noopener noreferrer" class="contact__button">
                                 Connect <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -483,7 +589,7 @@
                             <i class="fab fa-github"></i>
                             <h3 class="contact__card-title">GitHub</h3>
                             <span class="contact__card-data">Kaushik-Paul</span>
-                            <a href="https://github.com/Kaushik-Paul" target="_blank" class="contact__button">
+                            <a href="https://github.com/Kaushik-Paul" target="_blank" rel="me noopener noreferrer" class="contact__button">
                                 View Profile <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -499,9 +605,9 @@
             <h1 class="footer__title">Kaushik Paul</h1>
             <p>Software Engineer</p>
             <div class="footer__social">
-                <a href="https://github.com/Kaushik-Paul" class="footer__social-link"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/kaushik-paul-767590215" class="footer__social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:contact@kaushikpaul.co.in" class="footer__social-link" aria-label="Email">
+                <a href="https://github.com/Kaushik-Paul" class="footer__social-link" rel="me"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/kaushik-paul-767590215" class="footer__social-link" rel="me"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:contact@kaushikpaul.co.in" class="footer__social-link" aria-label="Email" rel="me">
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>
