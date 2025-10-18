@@ -882,6 +882,124 @@ html {
     margin-top: 2rem;
 }
 
+/* ===== FAQ ===== */
+.faq .container {
+    display: grid;
+    grid-template-columns: 1fr; /* One question per row */
+    gap: 1.5rem;
+    max-width: 800px;
+}
+
+.faq__item {
+    background: var(--container-color);
+    border-radius: 0.75rem;
+    padding: 0.5rem 0.75rem; /* tighter outer padding */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq__item:hover {
+    transform: none; /* keep card stable; color only on hovered portion */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.faq__item summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    gap: 1rem;
+    outline: none;
+    padding: 0.6rem 0.9rem; /* compact header padding */
+    border-radius: 0.75rem;
+    background: transparent; /* remove gradient */
+    transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    box-shadow: inset 0 0 0 1px rgba(108, 99, 255, 0.12);
+}
+
+.faq__item summary::-webkit-details-marker { display: none; }
+
+.faq__item[open] { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.09); }
+
+.faq__toggle i {
+    transition: transform 0.25s ease;
+    color: var(--first-color);
+}
+
+.faq__item[open] .faq__toggle i { transform: rotate(180deg); }
+
+.faq__question {
+    font-size: var(--h3-font-size);
+    color: var(--title-color);
+    margin: 0; /* equal top/bottom spacing handled by summary padding */
+    transition: color 0.2s ease;
+}
+
+/* No extra bottom margin on open; keep spacing consistent */
+.faq__item[open] .faq__question { margin: 0; }
+
+/* Question text color on hover/open */
+.faq__item summary:hover .faq__question { color: var(--first-color); }
+.faq__item[open] summary .faq__question { color: var(--first-color); }
+
+.faq__content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.25s ease, background-color 0.25s ease;
+    padding: 0; /* collapsed state: no padding */
+    background: transparent;
+}
+
+.faq__item[open] .faq__content {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 0.5rem;
+    padding: 0.5rem; /* tighter content padding */
+    background: transparent; /* no default background */
+    border-left: 0;
+    border-radius: 0.75rem;
+}
+
+/* Color only the exact area being hovered */
+.faq__content:hover {
+    background-color: rgba(108, 99, 255, 0.06);
+    border-left: 3px solid var(--first-color);
+    border-radius: 0.75rem;
+}
+
+.faq__answer {
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+.faq__answer a {
+    color: var(--first-color);
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+    .faq .container { grid-template-columns: 1fr; }
+}
+
+/* Focus styles for keyboard users */
+.faq__item summary:focus-visible {
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.25);
+    border-radius: 0.5rem;
+}
+
+.faq__item summary:hover {
+    transform: translateY(-1px);
+    background-color: rgba(108, 99, 255, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(108, 99, 255, 0.16), 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.faq__item[open] summary {
+    background-color: transparent; /* open state: no fill unless hovered */
+    box-shadow: inset 0 0 0 1px rgba(108, 99, 255, 0.2);
+}
+
 /* Buttons */
 .button {
     display: inline-flex;
