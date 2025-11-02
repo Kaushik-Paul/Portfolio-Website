@@ -507,11 +507,11 @@ body {
     
     /* Adjust logo and toggle spacing */
     .nav__logo {
-        margin-left: 0.5rem;
+        margin-left: 1rem;
     }
     
     .nav__toggle {
-        margin-right: 0.5rem;
+        margin-right: 0.75rem;
     }
     .nav__menu {
         position: fixed;
