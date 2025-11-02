@@ -1256,6 +1256,7 @@ section {
     position: relative;
     width: 300px;
     height: 300px;
+    max-width: 100%;
 }
 
 .home__blob {
@@ -1863,6 +1864,25 @@ section {
     
     .contact__card {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /* Prevent horizontal overflow on small screens */
+    .home__img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1; /* keep blob square without overflowing */
+        margin-inline: auto;
+    }
+
+    /* Keep the experience timeline dot inside the content area */
+    .experience__item {
+        padding-left: 1.25rem;
+    }
+    .experience__item::before {
+        left: 0;
     }
 }
 
