@@ -503,7 +503,16 @@ body {
 
 /* Mobile styles */
 @media screen and (max-width: 767px) {
-    .container { padding: 0 1rem; }
+    .container { padding: 0 1.5rem; }
+    
+    /* Adjust logo and toggle spacing */
+    .nav__logo {
+        margin-left: 0.5rem;
+    }
+    
+    .nav__toggle {
+        margin-right: 0.5rem;
+    }
     .nav__menu {
         position: fixed;
         top: 0;
