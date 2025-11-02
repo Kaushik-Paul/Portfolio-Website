@@ -218,6 +218,7 @@ body.is-loading .footer {
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* prevent horizontal overflow at root */
 }
 
 body {
@@ -506,14 +507,15 @@ body {
     .nav__menu {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0; /* anchor to viewport edge */
         width: 80%;
         max-width: 300px;
         height: 100dvh; /* use dynamic viewport height for mobile */
         padding: 5rem 2rem;
         background-color: var(--container-color);
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-        transition: right 0.4s ease, opacity 0.3s ease;
+        transition: transform 0.4s ease, opacity 0.3s ease, visibility 0.3s ease;
+        transform: translateX(100%); /* keep off-canvas without affecting layout width */
         z-index: var(--z-fixed);
         flex-direction: column;
         align-items: flex-start;
@@ -536,7 +538,7 @@ body {
     }
     
     .show-menu {
-        right: 0;
+        transform: translateX(0);
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
@@ -1176,14 +1178,15 @@ section {
 .nav__menu {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 80%;
     max-width: 300px;
     height: 100vh;
     padding: 5rem 2rem 2rem;
     background-color: var(--container-color);
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    transition: right 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
+    transform: translateX(100%);
     z-index: var(--z-fixed);
     overflow-y: auto;
 }
@@ -1207,7 +1210,7 @@ section {
 
 /* Show menu */
 .show-menu {
-    right: 0;
+    transform: translateX(0);
 }
 
 /* Active link */
