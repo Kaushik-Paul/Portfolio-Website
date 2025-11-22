@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://kaushikpaul.co.in/sitemap.xml
+Sitemap: https://www.kaushikpaul.co.in/sitemap.xml
