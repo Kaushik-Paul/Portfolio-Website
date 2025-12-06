@@ -398,6 +398,7 @@ body {
         opacity: 1 !important;
         visibility: visible !important;
         gap: 0.5rem;
+        transform: none !important;
     }
     
     .nav__list {
