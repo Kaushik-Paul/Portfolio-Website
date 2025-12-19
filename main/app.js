@@ -3,44 +3,84 @@ document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('nav-toggle');
     const navClose = document.getElementById('nav-close');
     const navMenu = document.querySelector('.nav__menu');
+    const navOverlay = document.getElementById('nav-overlay');
     const navLinks = document.querySelectorAll('.nav__link');
     const header = document.querySelector('.header');
     const scrollUpEl = document.getElementById('scroll-up');
     const scrollDownEl = document.getElementById('scroll-down');
 
+    const getHeaderOffset = () => {
+        if (!header) return 70;
+        return header.getBoundingClientRect().height || 70;
+    };
+
+    const openMenu = () => {
+        if (!navMenu) return;
+        navMenu.classList.add('show-menu');
+        document.body.classList.add('nav-open');
+        if (navOverlay) {
+            navOverlay.classList.add('show');
+            navOverlay.setAttribute('aria-hidden', 'false');
+        }
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeMenu = () => {
+        if (!navMenu) return;
+        navMenu.classList.remove('show-menu');
+        document.body.classList.remove('nav-open');
+        if (navOverlay) {
+            navOverlay.classList.remove('show');
+            navOverlay.setAttribute('aria-hidden', 'true');
+        }
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    };
+
     // Mobile menu toggle
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
-            navMenu.classList.add('show-menu');
+            openMenu();
         });
     }
 
     if (navClose && navMenu) {
         navClose.addEventListener('click', function() {
-            navMenu.classList.remove('show-menu');
+            closeMenu();
         });
     }
+
+    if (navOverlay) {
+        navOverlay.addEventListener('click', function() {
+            closeMenu();
+        });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeMenu();
+        }
+    });
 
     // Close menu when clicking on nav links
     if (navMenu) {
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                navMenu.classList.remove('show-menu');
+                closeMenu();
             });
         });
     }
 
     // Header scroll effect
     if (header) {
-        window.addEventListener('scroll', function() {
+        const syncHeaderState = () => {
             if (window.scrollY > 50) {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                header.classList.add('header--scrolled');
             } else {
-                header.style.backgroundColor = 'var(--container-color)';
-                header.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.1)';
+                header.classList.remove('header--scrolled');
             }
-        });
+        };
+        window.addEventListener('scroll', syncHeaderState);
+        syncHeaderState();
     }
 
     // Show/hide scroll-to-top button
@@ -67,8 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const getNextSectionTop = () => {
             const scrollPos = window.scrollY;
             for (let i = 0; i < sections.length; i++) {
-                if (sections[i].offsetTop - 90 > scrollPos + 1) {
-                    return sections[i].offsetTop - 70; // account for header
+                const nextTop = sections[i].offsetTop - getHeaderOffset();
+                if (nextTop > scrollPos + 1) {
+                    return nextTop;
                 }
             }
             // If at/after last section, go to bottom
@@ -103,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const target = document.querySelector(targetId);
             if (target) {
-                window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+                window.scrollTo({ top: target.offsetTop - getHeaderOffset(), behavior: 'smooth' });
             }
         });
     });
@@ -114,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollY = window.pageYOffset;
         sections.forEach(current => {
             const sectionHeight = current.offsetHeight;
-            const sectionTop = current.offsetTop - 100;
+            const sectionTop = current.offsetTop - getHeaderOffset() - 30;
             const sectionId = current.getAttribute('id');
             const navLink = document.querySelector(`.nav__menu a[href*="${sectionId}"]`);
             if (!navLink) return;
@@ -131,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Reset mobile menu state when resizing to desktop
     const resetMenuOnResize = () => {
         if (window.innerWidth >= 768 && navMenu) {
-            navMenu.classList.remove('show-menu');
+            closeMenu();
             // Ensure desktop styles apply
             navMenu.style.right = '';
         }
@@ -154,18 +195,20 @@ window.addEventListener('load', function() {
 });
 
 // Scroll reveal animation
-const sr = ScrollReveal({
-    origin: 'top',
-    distance: '60px',
-    duration: 2000,
-    delay: 200,
-    reset: false
-});
+if (window.ScrollReveal) {
+    const sr = ScrollReveal({
+        origin: 'top',
+        distance: '60px',
+        duration: 2000,
+        delay: 200,
+        reset: false
+    });
 
-sr.reveal('.home__content, .home__img', { origin: 'left' });
-sr.reveal('.about__img, .about__data', { interval: 200 });
-sr.reveal('.skills__content, .experience__content', { interval: 200 });
-sr.reveal('.contact__card', { interval: 200 });
+    sr.reveal('.home__content, .home__img', { origin: 'left' });
+    sr.reveal('.about__img, .about__data', { interval: 200 });
+    sr.reveal('.skills__content, .experience__content', { interval: 200 });
+    sr.reveal('.contact__card', { interval: 200 });
+}
 
 // (scroll and smooth anchor logic handled inside DOMContentLoaded)
 

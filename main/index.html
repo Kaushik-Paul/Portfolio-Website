@@ -175,7 +175,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="is-loading">
+ <body class="is-loading">
     <!-- Loader -->
     <div id="loader" class="loader" aria-label="Loading">
         <div class="loader__spinner" role="status" aria-live="polite"></div>
@@ -183,8 +183,8 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav container">
-            <div class="nav__logo">KP</div>
-            <div class="nav__menu">
+            <a class="nav__logo" href="#home" aria-label="Kaushik Paul">KP</a>
+            <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
                     <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
@@ -199,13 +199,14 @@
                         </a>
                     </li>
                 </ul>
-                <div class="nav__close" id="nav-close">
+                <button class="nav__close" id="nav-close" aria-label="Close menu">
                     <i class="fas fa-times"></i>
-                </div>
+                </button>
             </div>
-            <div class="nav__toggle" id="nav-toggle">
+            <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </nav>
     </header>
 
