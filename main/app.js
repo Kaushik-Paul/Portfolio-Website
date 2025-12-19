@@ -179,6 +179,20 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     window.addEventListener('resize', resetMenuOnResize);
     resetMenuOnResize();
+
+    // Animation on scroll (fallback when ScrollReveal isn't available)
+    if (!window.ScrollReveal) {
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.classList.add('animate-on-scroll');
+        });
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        animateOnScroll();
+    }
+
+    // Initialize 404 page animations if on 404 page
+    init404Animations();
 });
 
 // Loader: hide after window load
@@ -213,7 +227,7 @@ if (window.ScrollReveal) {
 // (scroll and smooth anchor logic handled inside DOMContentLoaded)
 
 // Animation on scroll
-const animateOnScroll = function() {
+function animateOnScroll() {
     const elements = document.querySelectorAll('.animate-on-scroll');
 
     elements.forEach(element => {
@@ -224,21 +238,7 @@ const animateOnScroll = function() {
             element.classList.add('visible');
         }
     });
-};
-
-window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('load', animateOnScroll);
-
-// Add animation classes to sections
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.classList.add('animate-on-scroll');
-    });
-
-    // Initialize 404 page animations if on 404 page
-    init404Animations();
-});
+}
 
 // 404 Page Animations
 function init404Animations() {
