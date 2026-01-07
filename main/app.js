@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     const scrollUpEl = document.getElementById('scroll-up');
     const scrollDownEl = document.getElementById('scroll-down');
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeDropdown = document.getElementById('theme-dropdown');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeOptions = document.querySelectorAll('.theme-option');
 
     const getHeaderOffset = () => {
         if (!header) return 70;
@@ -179,6 +183,95 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     window.addEventListener('resize', resetMenuOnResize);
     resetMenuOnResize();
+
+    // Theme Toggle
+    const canUseLocalStorage = () => {
+        try {
+            const test = '__test__';
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+
+    const getStoredTheme = () => {
+        if (!canUseLocalStorage()) return 'system';
+        return localStorage.getItem('theme') || 'system';
+    };
+
+    const saveTheme = (theme) => {
+        try {
+            localStorage.setItem('theme', theme);
+        } catch (e) {
+            console.log('localStorage not available, theme preference will not be saved');
+        }
+    };
+
+    const getSystemTheme = () => {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    const applyTheme = (theme) => {
+        document.documentElement.classList.remove('light-theme', 'dark-theme');
+
+        if (theme === 'system') {
+            const systemTheme = getSystemTheme();
+            if (systemTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+            themeIcon.className = 'fas fa-desktop';
+        } else if (theme === 'dark') {
+            document.documentElement.classList.add('dark-theme');
+            themeIcon.className = 'fas fa-moon';
+        } else {
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        saveTheme(theme);
+
+        themeOptions.forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.theme === theme) {
+                option.classList.add('active');
+            }
+        });
+    };
+
+    const toggleThemeDropdown = (e) => {
+        e.stopPropagation();
+        themeDropdown.classList.toggle('show');
+    };
+
+    const closeThemeDropdown = () => {
+        themeDropdown.classList.remove('show');
+    };
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleThemeDropdown);
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const selectedTheme = option.dataset.theme;
+                applyTheme(selectedTheme);
+                closeThemeDropdown();
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
+                closeThemeDropdown();
+            }
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (getStoredTheme() === 'system') {
+                applyTheme('system');
+            }
+        });
+
+        applyTheme(getStoredTheme());
+    }
 
     // Animation on scroll (fallback when ScrollReveal isn't available)
     if (!window.ScrollReveal) {
