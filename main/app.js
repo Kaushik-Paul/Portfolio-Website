@@ -220,12 +220,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const systemTheme = getSystemTheme();
             if (systemTheme === 'dark') {
                 document.documentElement.classList.add('dark-theme');
+            } else {
+                document.documentElement.classList.add('light-theme');
             }
             themeIcon.className = 'fas fa-desktop';
         } else if (theme === 'dark') {
             document.documentElement.classList.add('dark-theme');
             themeIcon.className = 'fas fa-moon';
         } else {
+            document.documentElement.classList.add('light-theme');
             themeIcon.className = 'fas fa-sun';
         }
 
