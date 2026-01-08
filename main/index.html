@@ -175,12 +175,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
- <body class="is-loading">
-    <!-- Loader -->
-    <div id="loader" class="loader" aria-label="Loading">
-        <div class="loader__spinner" role="status" aria-live="polite"></div>
-    </div>
-    <!-- Header -->
+  <body class="is-loading">
+     <!-- Loader -->
+     <div id="loader" class="loader" aria-label="Loading">
+         <div class="loader__spinner" role="status" aria-live="polite"></div>
+     </div>
+     <script>
+         (function() {
+             try {
+                 const storedTheme = localStorage.getItem('theme');
+                 if (storedTheme) {
+                     if (storedTheme === 'dark') {
+                         document.documentElement.classList.add('dark-theme');
+                     } else if (storedTheme === 'light') {
+                         document.documentElement.classList.add('light-theme');
+                     }
+                 }
+             } catch (e) {
+                 console.log('localStorage not available');
+             }
+         })();
+     </script>
+     <!-- Header -->
     <header class="header">
         <nav class="nav container">
             <a class="nav__logo" href="#home" aria-label="Kaushik Paul">KP</a>

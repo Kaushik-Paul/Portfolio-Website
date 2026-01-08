@@ -2171,6 +2171,10 @@ button:focus-visible {
     .faq__item {
         border-color: rgba(148, 163, 184, 0.14);
     }
+
+    .loader {
+        background: rgba(11, 18, 32, 0.98);
+    }
 }
 
 /* ===== THEME TOGGLE ===== */
@@ -2317,4 +2321,13 @@ button:focus-visible {
 .light-theme .header--scrolled {
     background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 14px 40px rgba(2, 6, 23, 0.10);
+}
+
+/* Loader Theme Styles */
+.dark-theme .loader {
+    background: rgba(11, 18, 32, 0.98);
+}
+
+.light-theme .loader {
+    background: rgba(255, 255, 255, 0.98);
 }
