@@ -127,10 +127,14 @@
     <!-- Default favicon (required for Google Search) -->
     <link rel="icon" href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-48x48.png">
     <!-- Multiple sizes for better compatibility for google search crawler -->
-    <link rel="icon" type="image/png" sizes="48x48" href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="48x48"
+        href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-192x192.png">
     <link rel="mask-icon" href="resources/rocket-blue.svg" color="#2563eb">
 
     <!-- Open Graph / Facebook -->
@@ -174,7 +178,8 @@
     <!-- Fallback for older platforms -->
     <meta name="theme-color" content="#2563eb">
     <meta name="msapplication-TileColor" content="#2563eb">
-    <link rel="shortcut icon" href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-48x48.png" type="image/png">
+    <link rel="shortcut icon"
+        href="https://storage.googleapis.com/kaushik-resources/kaushik-website-logo-favicon-48x48.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -182,28 +187,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-  <body class="is-loading">
-     <!-- Loader -->
-     <div id="loader" class="loader" aria-label="Loading">
-         <div class="loader__spinner" role="status" aria-live="polite"></div>
-     </div>
-     <script>
-         (function() {
-             try {
-                 const storedTheme = localStorage.getItem('theme');
-                 if (storedTheme) {
-                     if (storedTheme === 'dark') {
-                         document.documentElement.classList.add('dark-theme');
-                     } else if (storedTheme === 'light') {
-                         document.documentElement.classList.add('light-theme');
-                     }
-                 }
-             } catch (e) {
-                 console.log('localStorage not available');
-             }
-         })();
-     </script>
-     <!-- Header -->
+<body class="is-loading">
+    <!-- Loader -->
+    <div id="loader" class="loader" aria-label="Loading">
+        <div class="loader__spinner" role="status" aria-live="polite"></div>
+    </div>
+    <script>
+        (function () {
+            try {
+                const storedTheme = localStorage.getItem('theme');
+                if (storedTheme) {
+                    if (storedTheme === 'dark') {
+                        document.documentElement.classList.add('dark-theme');
+                    } else if (storedTheme === 'light') {
+                        document.documentElement.classList.add('light-theme');
+                    }
+                }
+            } catch (e) {
+                console.log('localStorage not available');
+            }
+        })();
+    </script>
+    <!-- Header -->
     <header class="header">
         <nav class="nav container">
             <a class="nav__logo" href="#home" aria-label="Kaushik Paul">KP</a>
@@ -242,7 +247,8 @@
                         <i class="fas fa-desktop"></i> System
                     </button>
                 </div>
-                <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-menu" aria-expanded="false">
+                <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-menu"
+                    aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -389,33 +395,54 @@
                                 </div>
                             </div>
                             <div class="skills__data">
-                                <i class="fas fa-robot"></i>
+                                <i class="fas fa-users-cog"></i>
                                 <div>
                                     <h3 class="skills__name">CrewAI</h3>
                                     <span class="skills__level">Advanced</span>
                                 </div>
                             </div>
                             <div class="skills__data">
-                                <i class="devicon-graphql-plain"></i>
+                                <i class="fas fa-project-diagram"></i>
                                 <div>
                                     <h3 class="skills__name">LangGraph</h3>
+                                    <span class="skills__level">Intermediate</span>
+                                </div>
+                            </div>
+                            <div class="skills__data">
+                                <i class="fas fa-layer-group"></i>
+                                <div>
+                                    <h3 class="skills__name">QLoRA</h3>
                                     <span class="skills__level">Intermediate</span>
                                 </div>
                             </div>
                         </div>
                         <div class="skills__group">
                             <div class="skills__data">
-                                <i class="fas fa-brain"></i>
+                                <i class="fas fa-robot"></i>
                                 <div>
                                     <h3 class="skills__name">Agentic AI</h3>
                                     <span class="skills__level">Advanced</span>
                                 </div>
                             </div>
                             <div class="skills__data">
-                                <i class="fas fa-keyboard"></i>
+                                <i class="fas fa-comment-dots"></i>
                                 <div>
                                     <h3 class="skills__name">Prompt Engineering</h3>
                                     <span class="skills__level">Advanced</span>
+                                </div>
+                            </div>
+                            <div class="skills__data">
+                                <i class="fas fa-database"></i>
+                                <div>
+                                    <h3 class="skills__name">RAG</h3>
+                                    <span class="skills__level">Advanced</span>
+                                </div>
+                            </div>
+                            <div class="skills__data">
+                                <i class="fas fa-sliders-h"></i>
+                                <div>
+                                    <h3 class="skills__name">Fine Tuning</h3>
+                                    <span class="skills__level">Intermediate</span>
                                 </div>
                             </div>
                         </div>
@@ -467,14 +494,14 @@
                     <div class="skills__box">
                         <div class="skills__group">
                             <div class="skills__data">
-                                <i class="fab fa-microsoft"></i>
+                                <i class="fas fa-plug"></i>
                                 <div>
                                     <h3 class="skills__name">MCP</h3>
                                     <span class="skills__level">Advanced</span>
                                 </div>
                             </div>
                             <div class="skills__data">
-                                <i class="fas fa-code"></i>
+                                <i class="fas fa-check-double"></i>
                                 <div>
                                     <h3 class="skills__name">Pydantic</h3>
                                     <span class="skills__level">Advanced</span>
@@ -487,6 +514,13 @@
                                     <span class="skills__level">Intermediate</span>
                                 </div>
                             </div>
+                            <div class="skills__data">
+                                <i class="devicon-fastapi-plain"></i>
+                                <div>
+                                    <h3 class="skills__name">FastAPI</h3>
+                                    <span class="skills__level">Advanced</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="skills__group">
                             <div class="skills__data">
@@ -497,9 +531,16 @@
                                 </div>
                             </div>
                             <div class="skills__data">
-                                <i class="devicon-amazonwebservices-plain"></i>
+                                <i class="fab fa-aws"></i>
                                 <div>
                                     <h3 class="skills__name">AWS</h3>
+                                    <span class="skills__level">Intermediate</span>
+                                </div>
+                            </div>
+                            <div class="skills__data">
+                                <i class="devicon-googlecloud-plain"></i>
+                                <div>
+                                    <h3 class="skills__name">GCP</h3>
                                     <span class="skills__level">Intermediate</span>
                                 </div>
                             </div>
