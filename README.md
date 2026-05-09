@@ -3,7 +3,7 @@
 [![Live Website](https://img.shields.io/badge/Live_Website-6c63ff?logo=rocket&logoColor=white&labelColor=5a52d3)](https://www.kaushikpaul.co.in/)
 [![Deployment](https://img.shields.io/badge/Deployed%20on-Cloudflare%20Pages-FF7139?logo=cloudflare)](https://pages.cloudflare.com/)
 
-A modern, responsive portfolio website showcasing my skills, experience, and projects as a Software Engineer. The website features a clean, interactive design with smooth animations and a custom 404 page.
+A modern, responsive portfolio website showcasing my skills, experience, and projects as an SDE 2 and backend-focused AI engineer. The website features a clean, interactive design with smooth animations and a custom 404 page.
 
 ## 🚀 Live Website
 
