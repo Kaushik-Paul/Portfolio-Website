@@ -1272,6 +1272,7 @@ html {
 }
 
 .about__info-title {
+    display: block;
     font-size: 1.5rem;
     color: var(--title-color);
     margin-bottom: 0.25rem;
@@ -1749,6 +1750,21 @@ html {
     }
     .experience__item::before {
         left: 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .about__info {
+        gap: 0.75rem;
+        max-width: 100%;
+    }
+
+    .about__info-item {
+        padding: 1rem 0.5rem;
+    }
+
+    .about__info-title {
+        font-size: 1.25rem;
     }
 }
 
