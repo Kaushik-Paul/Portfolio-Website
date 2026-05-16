@@ -2,6 +2,16 @@
     const LOCAL_API_BASE_URL = 'http://127.0.0.1:8000';
     const PRODUCTION_API_BASE_URL = 'https://api.ai-chat.pp.ua';
     const FULL_CHAT_URL = 'https://www.ai-chat.pp.ua/';
+    const MARKDOWN_LIBRARIES = [
+        {
+            globalName: 'marked',
+            src: 'https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js',
+        },
+        {
+            globalName: 'DOMPurify',
+            src: 'https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js',
+        },
+    ];
     const currentScript = document.currentScript;
     const WIDGET_MARKUP_URL = currentScript
         ? new URL('chat-widget.html', currentScript.src).toString()
@@ -71,6 +81,76 @@
         return linkifyEscapedText(escaped);
     }
 
+    function loadScriptOnce(src, globalName) {
+        if (window[globalName]) return Promise.resolve();
+
+        const existingScript = document.querySelector(`script[data-chat-widget-lib="${globalName}"]`);
+        if (existingScript) {
+            return new Promise((resolve, reject) => {
+                existingScript.addEventListener('load', resolve, { once: true });
+                existingScript.addEventListener('error', reject, { once: true });
+            });
+        }
+
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            script.defer = true;
+            script.dataset.chatWidgetLib = globalName;
+            script.addEventListener('load', resolve, { once: true });
+            script.addEventListener('error', reject, { once: true });
+            document.head.appendChild(script);
+        });
+    }
+
+    function loadMarkdownLibraries() {
+        return Promise.all(
+            MARKDOWN_LIBRARIES.map(library => loadScriptOnce(library.src, library.globalName))
+        );
+    }
+
+    function canRenderMarkdown() {
+        return Boolean(window.marked && window.DOMPurify);
+    }
+
+    function setExternalLinkBehavior(container) {
+        container.querySelectorAll('a[href]').forEach(link => {
+            const href = link.getAttribute('href') || '';
+            if (/^(https?:|mailto:|tel:)/i.test(href)) {
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+            }
+        });
+    }
+
+    function formatMarkdownContent(content) {
+        if (!canRenderMarkdown()) {
+            return `<div class="chat-widget__plain-text">${formatContent(content)}</div>`;
+        }
+
+        try {
+            const markedApi = window.marked;
+            if (typeof markedApi.setOptions === 'function') {
+                markedApi.setOptions({
+                    gfm: true,
+                    breaks: true,
+                });
+            }
+
+            const parsed = typeof markedApi.parse === 'function'
+                ? markedApi.parse(content || '')
+                : markedApi(content || '');
+            return window.DOMPurify.sanitize(parsed, {
+                USE_PROFILES: { html: true },
+                ADD_ATTR: ['target', 'rel'],
+                FORBID_TAGS: ['img', 'svg', 'math', 'style', 'iframe', 'object', 'embed', 'form', 'input', 'button'],
+            });
+        } catch (error) {
+            return `<div class="chat-widget__plain-text">${formatContent(content)}</div>`;
+        }
+    }
+
     function formatTime(timestamp) {
         const date = timestamp ? new Date(timestamp) : new Date();
         if (Number.isNaN(date.getTime())) return '';
@@ -117,7 +197,21 @@
 
         const bubble = document.createElement('div');
         bubble.className = 'chat-widget__bubble';
-        bubble.innerHTML = `<p>${formatContent(message.content)}</p><span class="chat-widget__time">${formatTime(message.timestamp)}</span>`;
+
+        const content = document.createElement('div');
+        content.className = message.role === 'assistant'
+            ? 'chat-widget__markdown'
+            : 'chat-widget__plain-text';
+        content.innerHTML = message.role === 'assistant'
+            ? formatMarkdownContent(message.content)
+            : formatContent(message.content);
+        setExternalLinkBehavior(content);
+        bubble.appendChild(content);
+
+        const time = document.createElement('span');
+        time.className = 'chat-widget__time';
+        time.textContent = formatTime(message.timestamp);
+        bubble.appendChild(time);
         row.appendChild(bubble);
 
         return row;
@@ -159,6 +253,8 @@
         let warmupPromise = null;
         let conversationVersion = 0;
         let requestController = null;
+        let markdownLibrariesLoaded = false;
+        let markdownLibrariesPromise = null;
         const chatConfig = getChatConfig();
         const mobileSheetQuery = window.matchMedia('(max-width: 767px)');
         const initialInputPlaceholder = input.getAttribute('placeholder') || '';
@@ -192,6 +288,24 @@
                 messagesEl.appendChild(createMessageElement(message));
             });
             scrollToBottom();
+        };
+
+        const ensureMarkdownLibraries = () => {
+            if (markdownLibrariesLoaded) return Promise.resolve();
+            if (markdownLibrariesPromise) return markdownLibrariesPromise;
+
+            markdownLibrariesPromise = loadMarkdownLibraries().then(() => {
+                markdownLibrariesLoaded = true;
+                if (messages.length) {
+                    renderMessages();
+                }
+            }).catch(() => {
+                markdownLibrariesLoaded = false;
+            }).finally(() => {
+                markdownLibrariesPromise = null;
+            });
+
+            return markdownLibrariesPromise;
         };
 
         const isWarmupBlocking = () => warmupStarted && !warmupComplete;
@@ -242,6 +356,7 @@
             document.body.classList.toggle('chat-widget-open', isOpen);
             if (isOpen) {
                 startWarmup();
+                ensureMarkdownLibraries();
                 setTimeout(() => input.focus(), 120);
                 scrollToBottom();
             }
@@ -261,6 +376,9 @@
             messages.push(message);
             messagesEl.appendChild(createMessageElement(message));
             saveMessages(messages);
+            if (role === 'assistant' && !markdownLibrariesLoaded) {
+                ensureMarkdownLibraries();
+            }
             scrollToBottom();
             return message;
         };
