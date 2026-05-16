@@ -36,6 +36,7 @@ Check out the live website: [https://www.kaushikpaul.co.in/](https://www.kaushik
 - **API**: Uses `https://api.ai-chat.pp.ua` in production
 - **Local API**: Uses `http://127.0.0.1:8000` when the site is served from `localhost` or `127.0.0.1`
 - **Widget Files**: Chatbot HTML, CSS, and JavaScript live in `main/chatbot/`
+- **Production API Keys**: Reads Cloudflare Pages secrets through `functions/api/chatbot/config.js`
 - **Warm-up Health Check**: Calls `/health` on the first chat open before enabling message sending
 - **Session Handling**: Stores chat history and session ID in `localStorage`; the reset button starts a fresh session
 
@@ -75,6 +76,13 @@ Check out the live website: [https://www.kaushikpaul.co.in/](https://www.kaushik
 
 ### Deployment
 The website is automatically deployed to Cloudflare Pages on every push to the `main` branch.
+
+Set these Cloudflare Pages production secrets for the chatbot:
+
+```bash
+AI_CHAT_HEALTH_API_KEY=your-health-endpoint-api-key
+AI_CHAT_CHAT_API_KEY=your-chat-endpoint-api-key
+```
 
 ## 🎨 Customization
 

@@ -1,6 +1,7 @@
 (function () {
     const LOCAL_API_BASE_URL = 'http://127.0.0.1:8000';
     const PRODUCTION_API_BASE_URL = 'https://api.ai-chat.pp.ua';
+    const PRODUCTION_SECRET_CONFIG_URL = '/api/chatbot/config';
     const FULL_CHAT_URL = 'https://www.ai-chat.pp.ua/';
     const MARKDOWN_LIBRARIES = [
         {
@@ -28,7 +29,9 @@
 
         return {
             apiBaseUrl: externalConfig.apiBaseUrl || (isLocalHost ? LOCAL_API_BASE_URL : PRODUCTION_API_BASE_URL),
-            apiKey: externalConfig.apiKey || '',
+            healthApiKey: externalConfig.healthApiKey || externalConfig.apiKey || '',
+            chatApiKey: externalConfig.chatApiKey || externalConfig.apiKey || '',
+            secretConfigUrl: externalConfig.secretConfigUrl || (isLocalHost ? '' : PRODUCTION_SECRET_CONFIG_URL),
         };
     }
 
@@ -256,6 +259,8 @@
         let markdownLibrariesLoaded = false;
         let markdownLibrariesPromise = null;
         const chatConfig = getChatConfig();
+        let chatConfigLoaded = !chatConfig.secretConfigUrl;
+        let chatConfigPromise = null;
         const mobileSheetQuery = window.matchMedia('(max-width: 767px)');
         const initialInputPlaceholder = input.getAttribute('placeholder') || '';
 
@@ -310,6 +315,31 @@
 
         const isWarmupBlocking = () => warmupStarted && !warmupComplete;
 
+        const ensureChatConfig = () => {
+            if (chatConfigLoaded) return Promise.resolve();
+            if (chatConfigPromise) return chatConfigPromise;
+
+            chatConfigPromise = fetch(chatConfig.secretConfigUrl, {
+                method: 'GET',
+                cache: 'no-store',
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error(`Chat config request failed with status ${response.status}`);
+                }
+                return response.json();
+            }).then(config => {
+                chatConfig.healthApiKey = config.healthApiKey || chatConfig.healthApiKey;
+                chatConfig.chatApiKey = config.chatApiKey || chatConfig.chatApiKey;
+                chatConfigLoaded = true;
+            }).catch(() => {
+                chatConfigLoaded = true;
+            }).finally(() => {
+                chatConfigPromise = null;
+            });
+
+            return chatConfigPromise;
+        };
+
         const updateComposerState = () => {
             const warmupBlocking = isWarmupBlocking();
             sendButton.disabled = isSending || warmupBlocking || !input.value.trim();
@@ -331,11 +361,13 @@
             widget.dataset.warming = 'true';
             updateComposerState();
 
-            const healthHeaders = chatConfig.apiKey ? { 'x-api-key': chatConfig.apiKey } : {};
-            warmupPromise = fetch(`${chatConfig.apiBaseUrl}/health`, {
-                method: 'GET',
-                headers: healthHeaders,
-                cache: 'no-store',
+            warmupPromise = ensureChatConfig().then(() => {
+                const healthHeaders = chatConfig.healthApiKey ? { 'x-api-key': chatConfig.healthApiKey } : {};
+                return fetch(`${chatConfig.apiBaseUrl}/health`, {
+                    method: 'GET',
+                    headers: healthHeaders,
+                    cache: 'no-store',
+                });
             }).catch(() => {
                 // Warm-up should never permanently block the recruiter from trying the chat.
             }).finally(() => {
@@ -400,11 +432,13 @@
             scrollToBottom();
 
             try {
+                await ensureChatConfig();
+
                 const headers = {
                     'Content-Type': 'application/json',
                 };
-                if (chatConfig.apiKey) {
-                    headers['x-api-key'] = chatConfig.apiKey;
+                if (chatConfig.chatApiKey) {
+                    headers['x-api-key'] = chatConfig.chatApiKey;
                 }
 
                 const response = await fetch(`${chatConfig.apiBaseUrl}/chat`, {
