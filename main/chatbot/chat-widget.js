@@ -2,6 +2,10 @@
     const LOCAL_API_BASE_URL = 'http://127.0.0.1:8000';
     const PRODUCTION_API_BASE_URL = 'https://api.ai-chat.pp.ua';
     const FULL_CHAT_URL = 'https://www.ai-chat.pp.ua/';
+    const currentScript = document.currentScript;
+    const WIDGET_MARKUP_URL = currentScript
+        ? new URL('chat-widget.html', currentScript.src).toString()
+        : 'chatbot/chat-widget.html';
     const STORAGE_KEYS = {
         sessionId: 'kaushik_chat_session_id',
         messages: 'kaushik_chat_messages',
@@ -96,6 +100,10 @@
         input.style.height = `${Math.min(input.scrollHeight, 120)}px`;
     }
 
+    function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+    }
+
     function createMessageElement(message) {
         const row = document.createElement('div');
         row.className = `chat-widget__message-row chat-widget__message-row--${message.role}`;
@@ -134,6 +142,7 @@
         const fab = root.querySelector('#chat-widget-fab');
         const closeButton = root.querySelector('#chat-widget-close');
         const clearButton = root.querySelector('#chat-widget-clear');
+        const sheetHandle = root.querySelector('.chat-widget__sheet-handle');
         const messagesEl = root.querySelector('#chat-widget-messages');
         const form = root.querySelector('#chat-widget-form');
         const input = root.querySelector('#chat-widget-input');
@@ -145,10 +154,32 @@
         let messages = loadMessages();
         let sessionId = safeStorageGet(STORAGE_KEYS.sessionId) || '';
         let isSending = false;
+        let conversationVersion = 0;
+        let requestController = null;
         const chatConfig = getChatConfig();
+        const mobileSheetQuery = window.matchMedia('(max-width: 767px)');
 
         const scrollToBottom = () => {
             messagesEl.scrollTop = messagesEl.scrollHeight;
+        };
+
+        const getMobileSheetBounds = () => {
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 720;
+            const minHeight = Math.min(448, Math.max(320, viewportHeight - 84));
+            const maxHeight = Math.max(minHeight, viewportHeight - 12);
+            return { minHeight, maxHeight };
+        };
+
+        const normalizeMobileSheetHeight = () => {
+            if (!mobileSheetQuery.matches) {
+                panel.style.removeProperty('--chat-mobile-sheet-height');
+                return;
+            }
+
+            const currentHeight = panel.getBoundingClientRect().height;
+            const { minHeight, maxHeight } = getMobileSheetBounds();
+            const nextHeight = clamp(currentHeight || maxHeight * 0.78, minHeight, maxHeight);
+            panel.style.setProperty('--chat-mobile-sheet-height', `${Math.round(nextHeight)}px`);
         };
 
         const renderMessages = () => {
@@ -197,6 +228,9 @@
             const messageText = String(content || '').trim();
             if (!messageText || isSending) return;
 
+            const activeConversationVersion = conversationVersion;
+            const controller = new AbortController();
+            requestController = controller;
             appendMessage('user', messageText);
             input.value = '';
             autosizeInput(input);
@@ -217,6 +251,7 @@
                 const response = await fetch(`${chatConfig.apiBaseUrl}/chat`, {
                     method: 'POST',
                     headers,
+                    signal: controller.signal,
                     body: JSON.stringify({
                         message: messageText,
                         session_id: sessionId || undefined,
@@ -228,6 +263,8 @@
                 }
 
                 const data = await response.json();
+                if (activeConversationVersion !== conversationVersion) return;
+
                 if (data.session_id) {
                     sessionId = data.session_id;
                     safeStorageSet(STORAGE_KEYS.sessionId, sessionId);
@@ -235,14 +272,21 @@
 
                 appendMessage('assistant', data.response || 'I received that, but I could not generate a response.');
             } catch (error) {
+                if (error.name === 'AbortError' || activeConversationVersion !== conversationVersion) return;
+
                 appendMessage(
                     'assistant',
                     `I could not reach the assistant right now. You can still open the full chat here: ${FULL_CHAT_URL}`
                 );
             } finally {
                 typingEl.remove();
-                setSending(false);
-                input.focus();
+                if (requestController === controller) {
+                    requestController = null;
+                }
+                if (activeConversationVersion === conversationVersion) {
+                    setSending(false);
+                    input.focus();
+                }
             }
         };
 
@@ -255,11 +299,18 @@
         });
 
         clearButton.addEventListener('click', () => {
+            conversationVersion += 1;
+            if (requestController) {
+                requestController.abort();
+                requestController = null;
+            }
             messages = [];
             sessionId = '';
             safeStorageRemove(STORAGE_KEYS.sessionId);
             safeStorageRemove(STORAGE_KEYS.messages);
             renderMessages();
+            setSending(false);
+            autosizeInput(input);
             input.focus();
         });
 
@@ -287,6 +338,50 @@
             });
         });
 
+        if (sheetHandle) {
+            sheetHandle.addEventListener('pointerdown', (event) => {
+                if (!mobileSheetQuery.matches || widget.dataset.open !== 'true') return;
+
+                event.preventDefault();
+                const pointerId = event.pointerId;
+                const startY = event.clientY;
+                const startHeight = panel.getBoundingClientRect().height;
+                const { minHeight, maxHeight } = getMobileSheetBounds();
+
+                widget.classList.add('chat-widget--resizing');
+                try {
+                    sheetHandle.setPointerCapture(pointerId);
+                } catch (error) {
+                    // Pointer capture is a nice-to-have; document listeners below keep dragging usable.
+                }
+
+                const onPointerMove = (moveEvent) => {
+                    if (moveEvent.pointerId !== pointerId) return;
+                    const nextHeight = clamp(startHeight + startY - moveEvent.clientY, minHeight, maxHeight);
+                    panel.style.setProperty('--chat-mobile-sheet-height', `${Math.round(nextHeight)}px`);
+                };
+
+                const stopDragging = (upEvent) => {
+                    if (upEvent.pointerId !== pointerId) return;
+                    widget.classList.remove('chat-widget--resizing');
+                    document.removeEventListener('pointermove', onPointerMove);
+                    document.removeEventListener('pointerup', stopDragging);
+                    document.removeEventListener('pointercancel', stopDragging);
+                    try {
+                        sheetHandle.releasePointerCapture(pointerId);
+                    } catch (error) {
+                        // Ignore release errors from browsers that did not capture the pointer.
+                    }
+                };
+
+                document.addEventListener('pointermove', onPointerMove);
+                document.addEventListener('pointerup', stopDragging);
+                document.addEventListener('pointercancel', stopDragging);
+            });
+        }
+
+        window.addEventListener('resize', normalizeMobileSheetHeight);
+
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && widget.dataset.open === 'true') {
                 setOpen(false);
@@ -304,7 +399,7 @@
 
     async function loadChatWidget() {
         try {
-            const response = await fetch('chat-widget.html', { cache: 'no-cache' });
+            const response = await fetch(WIDGET_MARKUP_URL, { cache: 'no-cache' });
             if (!response.ok) throw new Error('Unable to load chat widget markup');
 
             const mount = document.createElement('div');
