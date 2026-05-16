@@ -38,7 +38,7 @@ Check out the live website: [https://www.kaushikpaul.co.in/](https://www.kaushik
 - **Widget Files**: Chatbot HTML, CSS, and JavaScript live in `main/chatbot/`
 - **Production API Keys**: Reads Cloudflare Pages secrets through `main/functions/api/chatbot/config.js`
 - **Warm-up Health Check**: Calls `/health` on the first chat open before enabling message sending
-- **Session Handling**: Stores chat history and session ID in `localStorage`; the reset button starts a fresh session
+- **Session Handling**: Keeps chat history and session ID in page memory only; reloading the page starts a fresh session
 
 ### Deployment
 - **Cloudflare Pages**: Fast, global CDN hosting
