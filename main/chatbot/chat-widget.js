@@ -154,10 +154,14 @@
         let messages = loadMessages();
         let sessionId = safeStorageGet(STORAGE_KEYS.sessionId) || '';
         let isSending = false;
+        let warmupStarted = false;
+        let warmupComplete = false;
+        let warmupPromise = null;
         let conversationVersion = 0;
         let requestController = null;
         const chatConfig = getChatConfig();
         const mobileSheetQuery = window.matchMedia('(max-width: 767px)');
+        const initialInputPlaceholder = input.getAttribute('placeholder') || '';
 
         const scrollToBottom = () => {
             messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -190,6 +194,46 @@
             scrollToBottom();
         };
 
+        const isWarmupBlocking = () => warmupStarted && !warmupComplete;
+
+        const updateComposerState = () => {
+            const warmupBlocking = isWarmupBlocking();
+            sendButton.disabled = isSending || warmupBlocking || !input.value.trim();
+            input.disabled = isSending;
+            input.setAttribute(
+                'placeholder',
+                warmupBlocking ? 'Warming up the assistant...' : initialInputPlaceholder
+            );
+            chips.forEach(chip => {
+                chip.disabled = isSending || warmupBlocking;
+            });
+        };
+
+        const startWarmup = () => {
+            if (warmupComplete) return Promise.resolve();
+            if (warmupPromise) return warmupPromise;
+
+            warmupStarted = true;
+            widget.dataset.warming = 'true';
+            updateComposerState();
+
+            const healthHeaders = chatConfig.apiKey ? { 'x-api-key': chatConfig.apiKey } : {};
+            warmupPromise = fetch(`${chatConfig.apiBaseUrl}/health`, {
+                method: 'GET',
+                headers: healthHeaders,
+                cache: 'no-store',
+            }).catch(() => {
+                // Warm-up should never permanently block the recruiter from trying the chat.
+            }).finally(() => {
+                warmupComplete = true;
+                warmupPromise = null;
+                widget.dataset.warming = 'false';
+                updateComposerState();
+            });
+
+            return warmupPromise;
+        };
+
         const setOpen = (isOpen) => {
             widget.dataset.open = isOpen ? 'true' : 'false';
             panel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
@@ -197,6 +241,7 @@
             fab.setAttribute('aria-label', isOpen ? 'Minimize Kaushik AI Assistant' : 'Open Kaushik AI Assistant');
             document.body.classList.toggle('chat-widget-open', isOpen);
             if (isOpen) {
+                startWarmup();
                 setTimeout(() => input.focus(), 120);
                 scrollToBottom();
             }
@@ -204,11 +249,7 @@
 
         const setSending = (sending) => {
             isSending = sending;
-            sendButton.disabled = sending || !input.value.trim();
-            input.disabled = sending;
-            chips.forEach(chip => {
-                chip.disabled = sending;
-            });
+            updateComposerState();
         };
 
         const appendMessage = (role, content) => {
@@ -226,7 +267,7 @@
 
         const sendMessage = async (content) => {
             const messageText = String(content || '').trim();
-            if (!messageText || isSending) return;
+            if (!messageText || isSending || isWarmupBlocking()) return;
 
             const activeConversationVersion = conversationVersion;
             const controller = new AbortController();
@@ -321,7 +362,7 @@
 
         input.addEventListener('input', () => {
             autosizeInput(input);
-            sendButton.disabled = isSending || !input.value.trim();
+            updateComposerState();
         });
 
         input.addEventListener('keydown', (event) => {
@@ -390,11 +431,6 @@
 
         renderMessages();
         setSending(false);
-
-        const healthHeaders = chatConfig.apiKey ? { 'x-api-key': chatConfig.apiKey } : {};
-        fetch(`${chatConfig.apiBaseUrl}/health`, { method: 'GET', headers: healthHeaders }).catch(() => {
-            // Health is a warm-up hint only. Send still handles errors explicitly.
-        });
     }
 
     async function loadChatWidget() {
