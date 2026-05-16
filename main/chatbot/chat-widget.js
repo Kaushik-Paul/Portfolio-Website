@@ -17,11 +17,6 @@
     const WIDGET_MARKUP_URL = currentScript
         ? new URL('chat-widget.html', currentScript.src).toString()
         : 'chatbot/chat-widget.html';
-    const STORAGE_KEYS = {
-        sessionId: 'kaushik_chat_session_id',
-        messages: 'kaushik_chat_messages',
-    };
-
     function getChatConfig() {
         const externalConfig = window.KAUSHIK_CHAT_CONFIG || {};
         const hostname = window.location.hostname;
@@ -33,30 +28,6 @@
             chatApiKey: externalConfig.chatApiKey || externalConfig.apiKey || '',
             secretConfigUrl: externalConfig.secretConfigUrl || (isLocalHost ? '' : PRODUCTION_SECRET_CONFIG_URL),
         };
-    }
-
-    function safeStorageGet(key) {
-        try {
-            return localStorage.getItem(key);
-        } catch (error) {
-            return null;
-        }
-    }
-
-    function safeStorageSet(key, value) {
-        try {
-            localStorage.setItem(key, value);
-        } catch (error) {
-            // Storage is optional; the chat still works without persistence.
-        }
-    }
-
-    function safeStorageRemove(key) {
-        try {
-            localStorage.removeItem(key);
-        } catch (error) {
-            // Ignore storage errors.
-        }
     }
 
     function escapeHtml(value) {
@@ -160,24 +131,6 @@
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
 
-    function loadMessages() {
-        const stored = safeStorageGet(STORAGE_KEYS.messages);
-        if (!stored) return [];
-
-        try {
-            const parsed = JSON.parse(stored);
-            if (!Array.isArray(parsed)) return [];
-            return parsed.filter(message => message && !message.intro && message.role && typeof message.content === 'string');
-        } catch (error) {
-            return [];
-        }
-    }
-
-    function saveMessages(messages) {
-        const persisted = messages.slice(-30);
-        safeStorageSet(STORAGE_KEYS.messages, JSON.stringify(persisted));
-    }
-
     function autosizeInput(input) {
         input.style.height = 'auto';
         input.style.height = `${Math.min(input.scrollHeight, 120)}px`;
@@ -248,8 +201,8 @@
 
         if (!widget || !panel || !fab || !messagesEl || !form || !input || !sendButton) return;
 
-        let messages = loadMessages();
-        let sessionId = safeStorageGet(STORAGE_KEYS.sessionId) || '';
+        let messages = [];
+        let sessionId = '';
         let isSending = false;
         let warmupStarted = false;
         let warmupComplete = false;
@@ -407,7 +360,6 @@
             };
             messages.push(message);
             messagesEl.appendChild(createMessageElement(message));
-            saveMessages(messages);
             if (role === 'assistant' && !markdownLibrariesLoaded) {
                 ensureMarkdownLibraries();
             }
@@ -460,7 +412,6 @@
 
                 if (data.session_id) {
                     sessionId = data.session_id;
-                    safeStorageSet(STORAGE_KEYS.sessionId, sessionId);
                 }
 
                 appendMessage('assistant', data.response || 'I received that, but I could not generate a response.');
@@ -499,8 +450,6 @@
             }
             messages = [];
             sessionId = '';
-            safeStorageRemove(STORAGE_KEYS.sessionId);
-            safeStorageRemove(STORAGE_KEYS.messages);
             renderMessages();
             setSending(false);
             autosizeInput(input);
