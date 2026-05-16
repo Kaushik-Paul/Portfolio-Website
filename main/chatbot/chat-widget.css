@@ -468,6 +468,55 @@ body.chat-widget-open {
     }
 }
 
+@media screen and (min-width: 768px) {
+    :root {
+        --chat-fab-size: 3.25rem;
+    }
+
+    .chat-widget__fab i {
+        font-size: 1.28rem;
+    }
+
+    .chat-widget__status-dot {
+        right: 0.24rem;
+        bottom: 0.24rem;
+        width: 0.7rem;
+        height: 0.7rem;
+    }
+
+    .chat-widget__identity h2 {
+        font-size: 0.88rem;
+    }
+
+    .chat-widget__identity p {
+        font-size: 0.68rem;
+    }
+
+    .chat-widget__intro {
+        font-size: 0.78rem;
+        line-height: 1.5;
+    }
+
+    .chat-widget__chip {
+        min-height: 2.55rem;
+        font-size: 0.68rem;
+    }
+
+    .chat-widget__bubble {
+        padding: 0.68rem 0.78rem;
+        font-size: 0.76rem;
+        line-height: 1.5;
+    }
+
+    .chat-widget__time {
+        font-size: 0.6rem;
+    }
+
+    .chat-widget__input-shell textarea {
+        font-size: 0.8rem;
+    }
+}
+
 @media screen and (max-width: 767px) {
     :root {
         --chat-fab-size: 3.45rem;
