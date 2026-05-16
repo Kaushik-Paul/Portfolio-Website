@@ -12,6 +12,7 @@
     --chat-user: linear-gradient(135deg, #2563eb, #1d4ed8);
     --chat-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
     --chat-fab-size: 3.55rem;
+    --chat-panel-top: max(5.75rem, env(safe-area-inset-top));
     --floating-control-bottom: max(1.25rem, env(safe-area-inset-bottom));
     --floating-control-side: max(1.25rem, env(safe-area-inset-left));
 }
@@ -104,11 +105,11 @@ body.is-loading .chat-widget {
 
 .chat-widget__panel {
     position: fixed;
+    top: var(--chat-panel-top);
     right: max(1.25rem, env(safe-area-inset-right));
     bottom: calc(max(1.25rem, env(safe-area-inset-bottom)) + 5.25rem);
     width: min(24.5rem, calc(100vw - 2.5rem));
-    height: min(42rem, calc(100dvh - 8rem));
-    min-height: 34rem;
+    max-height: 44rem;
     display: grid;
     grid-template-rows: auto 1fr auto;
     overflow: hidden;
@@ -459,7 +460,6 @@ body.chat-widget-open {
 @media screen and (min-width: 1180px) {
     .chat-widget__panel {
         width: 25.5rem;
-        height: min(44rem, calc(100dvh - 8rem));
     }
 }
 
@@ -491,6 +491,7 @@ body.chat-widget-open {
     }
 
     .chat-widget__panel {
+        top: auto;
         left: 0;
         right: 0;
         bottom: 0;
