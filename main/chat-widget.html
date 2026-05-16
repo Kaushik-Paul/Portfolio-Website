@@ -1,0 +1,71 @@
+<div class="chat-widget" id="chat-widget" data-open="false">
+    <button class="chat-widget__fab" id="chat-widget-fab" type="button" aria-label="Open Kaushik AI Assistant"
+        aria-controls="chat-widget-panel" aria-expanded="false">
+        <i class="fas fa-robot" aria-hidden="true"></i>
+        <span class="chat-widget__status-dot" aria-hidden="true"></span>
+    </button>
+
+    <aside class="chat-widget__panel" id="chat-widget-panel" aria-label="Kaushik AI Assistant" aria-hidden="true">
+        <div class="chat-widget__sheet-handle" aria-hidden="true"></div>
+
+        <header class="chat-widget__header">
+            <div class="chat-widget__avatar" aria-hidden="true">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chat-widget__identity">
+                <h2>Kaushik AI Assistant</h2>
+                <p><span class="chat-widget__online-dot" aria-hidden="true"></span>Online • Ask about experience,
+                    projects, or contact</p>
+            </div>
+            <a class="chat-widget__icon-link" href="https://www.ai-chat.pp.ua/" target="_blank"
+                rel="noopener noreferrer" aria-label="Open full screen chat">
+                <i class="fas fa-up-right-from-square" aria-hidden="true"></i>
+            </a>
+            <button class="chat-widget__icon-button" id="chat-widget-clear" type="button" aria-label="Clear chat">
+                <i class="fas fa-rotate-left" aria-hidden="true"></i>
+            </button>
+            <button class="chat-widget__icon-button" id="chat-widget-close" type="button" aria-label="Minimize chat">
+                <i class="fas fa-minus" aria-hidden="true"></i>
+            </button>
+        </header>
+
+        <div class="chat-widget__messages" id="chat-widget-messages" aria-live="polite">
+            <div class="chat-widget__intro">
+                <p class="chat-widget__intro-title">Hi! I'm Kaushik's AI Assistant.</p>
+                <p>I can help you learn about Kaushik's experience, projects, skills, resume, and how to get in touch.
+                </p>
+            </div>
+
+            <div class="chat-widget__chips" aria-label="Suggested questions">
+                <button class="chat-widget__chip" type="button" data-prompt="Tell me about Kaushik's backend experience.">
+                    <i class="fas fa-server" aria-hidden="true"></i>
+                    Backend experience
+                </button>
+                <button class="chat-widget__chip" type="button" data-prompt="Give me a summary of Kaushik's skills.">
+                    <i class="fas fa-list" aria-hidden="true"></i>
+                    Skills summary
+                </button>
+                <button class="chat-widget__chip" type="button" data-prompt="What are Kaushik's top projects?">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    Top projects
+                </button>
+                <button class="chat-widget__chip" type="button" data-prompt="How can I contact Kaushik?">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    Contact info
+                </button>
+            </div>
+        </div>
+
+        <form class="chat-widget__composer" id="chat-widget-form">
+            <label class="chat-widget__input-label" for="chat-widget-input">Message Kaushik AI Assistant</label>
+            <div class="chat-widget__input-shell">
+                <i class="fas fa-paperclip" aria-hidden="true"></i>
+                <textarea id="chat-widget-input" rows="1" maxlength="1200"
+                    placeholder="Ask about skills, projects, or resume..."></textarea>
+                <button class="chat-widget__send" id="chat-widget-send" type="submit" aria-label="Send message">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </div>
+        </form>
+    </aside>
+</div>
