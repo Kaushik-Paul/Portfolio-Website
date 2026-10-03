@@ -532,6 +532,12 @@ button {
     border-color: transparent;
 }
 
+/* Brands without an icon-font glyph (e.g. Hugging Face) use an emoji instead. */
+.social-link--emoji {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
 /* ===== BADGE / CARD / LOGO ===== */
 .badge {
     display: inline-flex;
