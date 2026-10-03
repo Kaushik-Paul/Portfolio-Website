@@ -11,7 +11,8 @@ Check out the live website: [https://www.kaushikpaul.co.in/](https://www.kaushik
 
 ## ✨ Features
 
-- **Responsive Design**: Fully responsive layout that works on all devices
+- **Responsive Design**: Fully responsive layout tuned for mobile, tablet, and desktop
+- **Light / Dark / System Themes**: Flash-free theme switching that remembers your choice and follows OS changes
 - **Modern UI/UX**: Clean, professional design with smooth animations
 - **Interactive Elements**: Engaging user interactions and hover effects
 - **AI Chatbot**: Bottom-right assistant widget for asking about experience, projects, skills, resume, and contact details
@@ -29,7 +30,7 @@ Check out the live website: [https://www.kaushikpaul.co.in/](https://www.kaushik
 - **CSS3**: Custom animations, transitions, and responsive design
 - **JavaScript**: Interactive elements and dynamic content
 - **Font Awesome**: For beautiful icons
-- **Google Fonts (Poppins)**: Clean, modern typography
+- **Google Fonts (Plus Jakarta Sans + JetBrains Mono)**: Clean, modern typography
 - **Marked + DOMPurify**: Safe markdown rendering for chatbot responses
 
 ### Chatbot

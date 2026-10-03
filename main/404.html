@@ -5,28 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found | Kaushik Paul</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta name="color-scheme" content="light dark">
     <link rel="icon" href="resources/rocket-blue.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            var theme = 'system';
+            try {
+                theme = localStorage.getItem('theme') || 'system';
+            } catch (e) { /* storage unavailable */ }
+            var isDark = theme === 'dark' ||
+                (theme !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            document.documentElement.classList.add(isDark ? 'dark-theme' : 'light-theme');
+        })();
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body class="error-page">
-    <div class="error__container">
-        <div class="error__content">
-            <h1 class="error__title">404</h1>
-            <h2 class="error__subtitle">Page Not Found</h2>
-            <p class="error__description">Oops! The page you're looking for doesn't exist or has been moved.</p>
-            <div class="error__animation">
-                <div class="rocket">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="planet"></div>
-            </div>
-            <a href="/" class="button button--flex">
-                Back to Home <i class="fas fa-arrow-right button__icon"></i>
-            </a>
-        </div>
+    <div class="bg-decor" aria-hidden="true">
+        <div class="bg-decor__grid"></div>
+        <div class="bg-decor__orb bg-decor__orb--one"></div>
+        <div class="bg-decor__orb bg-decor__orb--two"></div>
     </div>
-    <script src="app.js"></script>
+    <main class="error__container">
+        <h1 class="error__title">404</h1>
+        <h2 class="error__subtitle">Page Not Found</h2>
+        <p class="error__description">Oops! The page you're looking for doesn't exist or has been moved.</p>
+        <div class="error__animation" aria-hidden="true">
+            <div class="rocket">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="planet"></div>
+        </div>
+        <a href="/" class="button">
+            Back to Home <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+    </main>
+    <script src="/app.js"></script>
 </body>
 </html>
