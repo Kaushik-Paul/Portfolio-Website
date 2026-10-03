@@ -13,6 +13,7 @@ Check out the live website: [https://www.kaushikpaul.co.in/](https://www.kaushik
 
 - **Responsive Design**: Fully responsive layout tuned for mobile, tablet, and desktop
 - **Light / Dark / System Themes**: Flash-free theme switching that remembers your choice and follows OS changes
+- **Featured Projects**: Live project cards that link to the projects hub, plus a filterable skills grid
 - **Modern UI/UX**: Clean, professional design with smooth animations
 - **Interactive Elements**: Engaging user interactions and hover effects
 - **AI Chatbot**: Bottom-right assistant widget for asking about experience, projects, skills, resume, and contact details
@@ -30,7 +31,7 @@ Check out the live website: [https://www.kaushikpaul.co.in/](https://www.kaushik
 - **CSS3**: Custom animations, transitions, and responsive design
 - **JavaScript**: Interactive elements and dynamic content
 - **Font Awesome**: For beautiful icons
-- **Google Fonts (Plus Jakarta Sans + JetBrains Mono)**: Clean, modern typography
+- **Google Fonts (Plus Jakarta Sans + Instrument Serif + JetBrains Mono)**: Clean, modern typography with editorial accents
 - **Marked + DOMPurify**: Safe markdown rendering for chatbot responses
 
 ### Chatbot

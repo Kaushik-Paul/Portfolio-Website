@@ -490,6 +490,16 @@
             });
         });
 
+        // Page buttons marked with data-chat-open open the widget (and optionally ask a question).
+        // They are links to the full-screen chat, so they still work if the widget never loads.
+        document.addEventListener('click', (event) => {
+            const trigger = event.target.closest('[data-chat-open]');
+            if (!trigger || root.contains(trigger)) return;
+            event.preventDefault();
+            setOpen(true);
+            if (trigger.dataset.chatPrompt) sendMessage(trigger.dataset.chatPrompt);
+        });
+
         if (sheetHandle) {
             sheetHandle.addEventListener('pointerdown', (event) => {
                 if (!mobileSheetQuery.matches || widget.dataset.open !== 'true') return;

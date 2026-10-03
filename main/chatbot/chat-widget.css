@@ -173,7 +173,7 @@
     grid-template-rows: auto 1fr auto;
     overflow: hidden;
     background: var(--chat-panel);
-    border-radius: 1.4rem;
+    border-radius: 1.5rem;
     box-shadow: var(--chat-shadow);
     opacity: 0;
     pointer-events: none;
@@ -202,7 +202,10 @@
     gap: 0.75rem;
     align-items: center;
     padding: 1rem 0.85rem 1rem 1rem;
-    background: var(--chat-gradient);
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 18px 18px,
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px) 0 0 / 18px 18px,
+        var(--chat-gradient);
     color: #ffffff;
     overflow: hidden;
 }
@@ -314,7 +317,9 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: 1rem;
-    background: var(--chat-canvas);
+    background:
+        radial-gradient(90% 45% at 100% 0%, var(--chat-tint), transparent 70%),
+        var(--chat-canvas);
     scroll-behavior: smooth;
     touch-action: pan-y;
     scrollbar-width: thin;
@@ -716,6 +721,7 @@
     outline: 0;
     background: transparent;
     color: var(--chat-text);
+    font-family: inherit;
     font-size: 0.88rem;
     line-height: 1.45;
     padding: 0.45rem 0;
@@ -727,6 +733,9 @@
 
 .chat-widget__input-shell textarea::placeholder {
     color: var(--chat-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chat-widget__input-shell textarea:focus-visible {
