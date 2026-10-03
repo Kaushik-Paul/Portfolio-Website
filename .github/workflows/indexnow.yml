@@ -1,0 +1,26 @@
+name: Notify search engines (IndexNow)
+
+# After a push to master, Cloudflare Pages redeploys the site. Once it is live,
+# ping IndexNow so Bing (and other IndexNow engines) recrawl the homepage quickly.
+on:
+  push:
+    branches: [master]
+    paths: ['main/**']
+  workflow_dispatch:
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Cloudflare Pages deployment
+        run: sleep 180
+
+      - name: Submit URLs to IndexNow
+        env:
+          HOST: www.kaushikpaul.co.in
+          KEY: e65feee97c16e37c99d621dedb47aca7
+        run: |
+          curl -sS --fail-with-body -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":[\"https://$HOST/\"]}"
+          echo "IndexNow ping sent."
