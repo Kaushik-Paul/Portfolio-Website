@@ -197,7 +197,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="chatbot/chat-widget.css">
@@ -209,23 +209,22 @@
 
     <!-- Decorative background -->
     <div class="bg-decor" aria-hidden="true">
+        <div class="bg-decor__aurora"></div>
         <div class="bg-decor__grid"></div>
-        <div class="bg-decor__orb bg-decor__orb--one"></div>
-        <div class="bg-decor__orb bg-decor__orb--two"></div>
-        <div class="bg-decor__orb bg-decor__orb--three"></div>
+        <div class="bg-decor__noise"></div>
     </div>
 
     <!-- Header -->
     <header class="header" id="header">
-        <nav class="nav container" aria-label="Primary">
+        <nav class="nav" aria-label="Primary">
             <a class="nav__logo" href="#home" aria-label="Kaushik Paul — home">
-                <span class="nav__logo-mark">KP</span>
+                <span class="logo-mark">KP</span>
                 <span class="nav__logo-text">Kaushik Paul</span>
             </a>
 
             <div class="nav__menu" id="nav-menu">
                 <div class="nav__menu-head">
-                    <span class="nav__logo-mark">KP</span>
+                    <span class="logo-mark">KP</span>
                     <button class="icon-button nav__close" id="nav-close" type="button" aria-label="Close menu">
                         <i class="fas fa-xmark" aria-hidden="true"></i>
                     </button>
@@ -234,140 +233,213 @@
                     <li><a href="#home" class="nav__link active">Home</a></li>
                     <li><a href="#about" class="nav__link">About</a></li>
                     <li><a href="#skills" class="nav__link">Skills</a></li>
+                    <li><a href="#projects" class="nav__link">Projects</a></li>
                     <li><a href="#experience" class="nav__link">Experience</a></li>
                     <li><a href="#contact" class="nav__link">Contact</a></li>
-                    <li>
-                        <a href="https://projects.kaushikpaul.co.in/" class="nav__link nav__link--external"
-                            target="_blank" rel="me noopener noreferrer">
-                            Projects <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                        </a>
-                    </li>
+                    <li class="nav__indicator" id="nav-indicator" role="presentation" aria-hidden="true"></li>
                 </ul>
-                <a href="https://storage.googleapis.com/kaushik-resources/Kaushik%20Paul%20Resume.pdf"
-                    class="button button--small nav__resume" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-file-arrow-down" aria-hidden="true"></i> Resume
-                </a>
+                <div class="nav__menu-foot">
+                    <a href="https://projects.kaushikpaul.co.in/" class="button button--ghost" target="_blank"
+                        rel="me noopener noreferrer">
+                        All Projects <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://storage.googleapis.com/kaushik-resources/Kaushik%20Paul%20Resume.pdf"
+                        class="button nav__resume" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-arrow-down" aria-hidden="true"></i> Resume
+                    </a>
+                </div>
             </div>
             <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
 
             <div class="nav__actions">
-                <div class="theme-switcher">
-                    <button class="icon-button theme-toggle" id="theme-toggle" type="button"
-                        aria-label="Change color theme" aria-haspopup="true" aria-expanded="false"
-                        aria-controls="theme-dropdown">
-                        <i class="fas fa-desktop" id="theme-icon" aria-hidden="true"></i>
+                <div class="theme-switch" role="radiogroup" aria-label="Color theme" data-active="system">
+                    <span class="theme-switch__thumb" aria-hidden="true"></span>
+                    <button class="theme-option" type="button" role="radio" aria-checked="false" data-theme="light"
+                        aria-label="Light theme" title="Light">
+                        <i class="fas fa-sun" aria-hidden="true"></i>
                     </button>
-                    <div class="theme-dropdown" id="theme-dropdown" role="menu">
-                        <button class="theme-option" type="button" role="menuitemradio" data-theme="light">
-                            <i class="fas fa-sun" aria-hidden="true"></i> Light
-                        </button>
-                        <button class="theme-option" type="button" role="menuitemradio" data-theme="dark">
-                            <i class="fas fa-moon" aria-hidden="true"></i> Dark
-                        </button>
-                        <button class="theme-option" type="button" role="menuitemradio" data-theme="system">
-                            <i class="fas fa-desktop" aria-hidden="true"></i> System
-                        </button>
-                    </div>
+                    <button class="theme-option" type="button" role="radio" aria-checked="false" data-theme="dark"
+                        aria-label="Dark theme" title="Dark">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                    <button class="theme-option" type="button" role="radio" aria-checked="true" data-theme="system"
+                        aria-label="System theme" title="System">
+                        <i class="fas fa-desktop" aria-hidden="true"></i>
+                    </button>
                 </div>
+                <a href="https://storage.googleapis.com/kaushik-resources/Kaushik%20Paul%20Resume.pdf"
+                    class="button button--small nav__cta" target="_blank" rel="noopener noreferrer">
+                    Resume <i class="fas fa-arrow-down" aria-hidden="true"></i>
+                </a>
                 <button class="icon-button nav__toggle" id="nav-toggle" type="button" aria-label="Open menu"
                     aria-controls="nav-menu" aria-expanded="false">
-                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="nav__burger" aria-hidden="true"></span>
                 </button>
             </div>
         </nav>
     </header>
 
     <main class="main" id="main">
-        <!-- Home Section -->
-        <section class="home section" id="home">
+        <!-- ============ HOME ============ -->
+        <section class="home" id="home">
             <div class="home__container container">
                 <div class="home__content">
-                    <span class="badge badge--status reveal">
+                    <span class="badge badge--status intro" style="--i:0">
                         <span class="badge__pulse" aria-hidden="true"></span>
                         SDE 2 at Instahyre · Kolkata, India
                     </span>
-                    <p class="home__subtitle reveal">Hello, I'm</p>
-                    <h1 class="home__title reveal">Kaushik <span class="text-gradient">Paul</span></h1>
-                    <h2 class="home__profession reveal">SDE 2 | Backend &amp; AI Engineer</h2>
-                    <p class="home__description reveal">
+                    <h1 class="home__title intro" style="--i:1">
+                        <span class="home__hello">Hi, I'm</span>
+                        Kaushik <span class="text-gradient">Paul</span>
+                    </h1>
+                    <h2 class="home__profession intro" style="--i:2">SDE 2 | Backend &amp; AI Engineer</h2>
+                    <p class="home__rotator intro" style="--i:3">
+                        I build
+                        <span class="rotator" id="rotator" aria-live="off">
+                            <span class="rotator__word is-active">scalable backends.</span>
+                            <span class="rotator__word">AI agents.</span>
+                            <span class="rotator__word">hiring intelligence.</span>
+                            <span class="rotator__word">reliable APIs.</span>
+                        </span>
+                    </p>
+                    <p class="home__description intro" style="--i:4">
                         I build scalable backend systems and AI-powered hiring products that improve recruiter
                         workflows, job intelligence, and candidate matching.
                     </p>
-                    <div class="home__buttons reveal">
-                        <a href="#contact" class="button">
-                            Contact Me <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <div class="home__buttons intro" style="--i:5">
+                        <a href="#contact" class="button button--glow">
+                            Let's Talk <i class="fas fa-arrow-right" aria-hidden="true"></i>
                         </a>
                         <a href="https://storage.googleapis.com/kaushik-resources/Kaushik%20Paul%20Resume.pdf"
                             class="button button--ghost" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-file-arrow-down" aria-hidden="true"></i> Download Resume
                         </a>
                     </div>
-                    <div class="home__social reveal">
-                        <a href="https://github.com/Kaushik-Paul" class="social-link" target="_blank"
-                            rel="me noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/kaushik-paul-767590215" class="social-link"
-                            target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn"><i
-                                class="fab fa-linkedin-in"></i></a>
-                        <a href="mailto:contact@kaushikpaul.co.in" class="social-link" rel="me"
-                            aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <div class="home__meta intro" style="--i:6">
+                        <div class="home__social">
+                            <a href="https://github.com/Kaushik-Paul" class="social-link" target="_blank"
+                                rel="me noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/kaushik-paul-767590215" class="social-link"
+                                target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:contact@kaushikpaul.co.in" class="social-link" rel="me"
+                                aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                        <span class="home__meta-divider" aria-hidden="true"></span>
+                        <a class="home__ask" href="https://www.ai-chat.pp.ua/" target="_blank"
+                            rel="noopener noreferrer" data-chat-open>
+                            <span class="home__ask-icon"><i class="fas fa-wand-magic-sparkles"
+                                    aria-hidden="true"></i></span>
+                            Ask my AI about me
+                        </a>
                     </div>
                 </div>
 
-                <div class="home__visual reveal" aria-label="Profile summary">
-                    <div class="code-card">
-                        <div class="code-card__bar">
-                            <span class="code-card__dot code-card__dot--red"></span>
-                            <span class="code-card__dot code-card__dot--yellow"></span>
-                            <span class="code-card__dot code-card__dot--green"></span>
-                            <span class="code-card__file">kaushik.py</span>
+                <div class="home__visual intro" style="--i:3">
+                    <div class="orbit" aria-hidden="true">
+                        <div class="orbit__ring orbit__ring--outer">
+                            <span class="orbit__icon" style="--a:0deg"><i class="devicon-python-plain colored"></i></span>
+                            <span class="orbit__icon" style="--a:72deg"><i class="devicon-django-plain"></i></span>
+                            <span class="orbit__icon" style="--a:144deg"><i class="fab fa-aws"></i></span>
+                            <span class="orbit__icon" style="--a:216deg"><i class="devicon-postgresql-plain colored"></i></span>
+                            <span class="orbit__icon" style="--a:288deg"><i class="devicon-redis-plain colored"></i></span>
                         </div>
-<pre class="code-card__body" aria-hidden="true"><code><span class="tok-key">class</span> <span class="tok-cls">Engineer</span>:
-    name  = <span class="tok-str">"Kaushik Paul"</span>
-    role  = <span class="tok-str">"SDE 2 @ Instahyre"</span>
-    stack = [<span class="tok-str">"Python"</span>, <span class="tok-str">"Django"</span>,
-             <span class="tok-str">"Java"</span>, <span class="tok-str">"AI Agents"</span>]
-
-    <span class="tok-key">def</span> <span class="tok-fn">build</span>(self):
-        <span class="tok-key">return</span> <span class="tok-str">"scalable, AI-powered</span>
-<span class="tok-str">                products"</span><span class="code-card__cursor"></span></code></pre>
+                        <div class="orbit__ring orbit__ring--inner">
+                            <span class="orbit__icon orbit__icon--sm" style="--a:40deg"><i class="devicon-java-plain colored"></i></span>
+                            <span class="orbit__icon orbit__icon--sm" style="--a:160deg"><i class="devicon-fastapi-plain colored"></i></span>
+                            <span class="orbit__icon orbit__icon--sm" style="--a:280deg"><i class="fas fa-robot"></i></span>
+                        </div>
                     </div>
 
-                    <div class="float-card float-card--projects">
-                        <span class="float-card__icon"><i class="fas fa-rocket" aria-hidden="true"></i></span>
-                        <div>
-                            <span class="float-card__value">35+</span>
-                            <span class="float-card__label">Projects</span>
+                    <div class="console tilt" id="hero-console">
+                        <div class="console__bar">
+                            <span class="console__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="console__title"><i class="fas fa-terminal" aria-hidden="true"></i>
+                                kaushik@instahyre: ~</span>
+                            <span class="console__live">LIVE</span>
                         </div>
-                        <a class="float-card__link" href="https://github.com/Kaushik-Paul/" target="_blank"
-                            rel="me noopener noreferrer">View All <i class="fas fa-arrow-up-right-from-square"
-                                aria-hidden="true"></i></a>
+                        <div class="console__body" id="console-body">
+                            <p class="console__line"><span class="c-prompt">❯</span>kaushik --whoami</p>
+                            <p class="console__line c-out">SDE II @ Instahyre · Backend &amp; AI Engineer</p>
+                            <p class="console__line"><span class="c-prompt">❯</span>agent run job-intelligence</p>
+                            <p class="console__line c-out"><span class="c-step">▸</span> parsing role requirements <span class="c-ok">done</span></p>
+                            <p class="console__line c-out"><span class="c-step">▸</span> generating job details <span class="c-ok">done</span></p>
+                            <p class="console__line c-out"><span class="c-step">▸</span> matching candidates <span class="c-ok">done</span></p>
+                            <p class="console__line c-result"><span class="c-check">✓</span> job creation time <b>−65%</b></p>
+                            <p class="console__line c-result"><span class="c-check">✓</span> candidate relevancy <b>+45%</b></p>
+                        </div>
                     </div>
+
                     <div class="float-card float-card--exp">
-                        <span class="float-card__icon float-card__icon--alt"><i class="fas fa-bolt"
-                                aria-hidden="true"></i></span>
+                        <span class="float-card__icon"><i class="fas fa-bolt" aria-hidden="true"></i></span>
                         <div>
                             <span class="float-card__value">4+ yrs</span>
                             <span class="float-card__label">Experience</span>
                         </div>
                     </div>
+                    <a class="float-card float-card--projects" href="https://github.com/Kaushik-Paul/"
+                        target="_blank" rel="me noopener noreferrer">
+                        <span class="float-card__icon float-card__icon--violet"><i class="fas fa-rocket"
+                                aria-hidden="true"></i></span>
+                        <div>
+                            <span class="float-card__value">35+</span>
+                            <span class="float-card__label">Projects · View all <i
+                                    class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+                        </div>
+                    </a>
                 </div>
             </div>
 
-            <a href="#about" class="home__scroll" aria-label="Scroll to About section">
-                <span class="home__scroll-mouse" aria-hidden="true"></span>
-            </a>
+            <!-- Tech marquee -->
+            <div class="marquee" aria-label="Technologies I work with">
+                <ul class="marquee__track">
+                    <li><i class="devicon-python-plain" aria-hidden="true"></i>Python</li>
+                    <li><i class="devicon-django-plain" aria-hidden="true"></i>Django</li>
+                    <li><i class="devicon-java-plain" aria-hidden="true"></i>Java</li>
+                    <li><i class="devicon-spring-plain" aria-hidden="true"></i>Spring Boot</li>
+                    <li><i class="devicon-fastapi-plain" aria-hidden="true"></i>FastAPI</li>
+                    <li><i class="devicon-postgresql-plain" aria-hidden="true"></i>PostgreSQL</li>
+                    <li><i class="devicon-redis-plain" aria-hidden="true"></i>Redis</li>
+                    <li><i class="devicon-apachekafka-plain" aria-hidden="true"></i>Kafka</li>
+                    <li><i class="fab fa-aws" aria-hidden="true"></i>AWS</li>
+                    <li><i class="devicon-googlecloud-plain" aria-hidden="true"></i>GCP</li>
+                    <li><i class="devicon-terraform-plain" aria-hidden="true"></i>Terraform</li>
+                    <li><i class="fas fa-users-gear" aria-hidden="true"></i>CrewAI</li>
+                    <li><i class="fas fa-diagram-project" aria-hidden="true"></i>LangGraph</li>
+                    <li><i class="fas fa-plug" aria-hidden="true"></i>MCP</li>
+                </ul>
+                <ul class="marquee__track" aria-hidden="true">
+                    <li><i class="devicon-python-plain"></i>Python</li>
+                    <li><i class="devicon-django-plain"></i>Django</li>
+                    <li><i class="devicon-java-plain"></i>Java</li>
+                    <li><i class="devicon-spring-plain"></i>Spring Boot</li>
+                    <li><i class="devicon-fastapi-plain"></i>FastAPI</li>
+                    <li><i class="devicon-postgresql-plain"></i>PostgreSQL</li>
+                    <li><i class="devicon-redis-plain"></i>Redis</li>
+                    <li><i class="devicon-apachekafka-plain"></i>Kafka</li>
+                    <li><i class="fab fa-aws"></i>AWS</li>
+                    <li><i class="devicon-googlecloud-plain"></i>GCP</li>
+                    <li><i class="devicon-terraform-plain"></i>Terraform</li>
+                    <li><i class="fas fa-users-gear"></i>CrewAI</li>
+                    <li><i class="fas fa-diagram-project"></i>LangGraph</li>
+                    <li><i class="fas fa-plug"></i>MCP</li>
+                </ul>
+            </div>
         </section>
 
-        <!-- About Section -->
+        <!-- ============ ABOUT ============ -->
         <section class="about section" id="about">
             <div class="container">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">My Introduction</span>
-                    <h2 class="section__title">About Me</h2>
+                    <span class="section__eyebrow"><span>01</span> My Introduction</span>
+                    <h2 class="section__title">About <em class="serif">Me</em></h2>
                 </div>
 
-                <div class="about__grid">
-                    <article class="card about__intro reveal">
+                <div class="bento">
+                    <article class="card spotlight bento__intro reveal">
+                        <span class="card__kicker"><i class="fas fa-user" aria-hidden="true"></i> Who I am</span>
+                        <h3 class="bento__headline">Engineering reliable systems with an <span
+                                class="text-gradient">AI edge</span>.</h3>
                         <p class="about__description">
                             Software Development Engineer II at Instahyre with 4+ years of engineering experience
                             across backend systems, AI-powered hiring workflows, and high-impact product delivery. I
@@ -382,346 +454,514 @@
                         </div>
                     </article>
 
-                    <div class="about__stats">
-                        <div class="card stat reveal">
-                            <span class="stat__icon"><i class="fas fa-briefcase" aria-hidden="true"></i></span>
-                            <span class="stat__value">4+</span>
-                            <span class="stat__label">Years Experience</span>
-                        </div>
-                        <div class="card stat reveal">
-                            <span class="stat__icon"><i class="fas fa-code-branch" aria-hidden="true"></i></span>
-                            <span class="stat__value">35+</span>
-                            <span class="stat__label">Projects Completed</span>
-                        </div>
-                        <div class="card stat reveal">
-                            <span class="stat__icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
-                            <span class="stat__value">15+</span>
-                            <span class="stat__label">Technologies Mastered</span>
-                        </div>
+                    <article class="card spotlight bento__now reveal">
+                        <span class="card__kicker"><span class="badge__pulse" aria-hidden="true"></span> Right
+                            now</span>
+                        <p class="bento__now-role">SDE II <span>@ Instahyre</span></p>
+                        <ul class="bento__now-list">
+                            <li><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Leading AI job creation
+                                &amp; recommendations</li>
+                            <li><i class="fas fa-people-group" aria-hidden="true"></i> Leading a team of 5
+                                developers</li>
+                        </ul>
+                    </article>
+
+                    <article class="card spotlight bento__place reveal">
+                        <div class="bento__globe" aria-hidden="true"></div>
+                        <span class="card__kicker"><i class="fas fa-location-dot" aria-hidden="true"></i> Based
+                            in</span>
+                        <p class="bento__place-name">Kolkata, India</p>
+                        <p class="bento__clock"><i class="far fa-clock" aria-hidden="true"></i> <span
+                                id="local-time">IST (UTC+5:30)</span></p>
+                    </article>
+
+                    <div class="card spotlight stat reveal">
+                        <span class="stat__icon"><i class="fas fa-briefcase" aria-hidden="true"></i></span>
+                        <span class="stat__value"><span class="count" data-count="4">4</span>+</span>
+                        <span class="stat__label">Years Experience</span>
+                    </div>
+                    <div class="card spotlight stat reveal">
+                        <span class="stat__icon stat__icon--violet"><i class="fas fa-code-branch"
+                                aria-hidden="true"></i></span>
+                        <span class="stat__value"><span class="count" data-count="35">35</span>+</span>
+                        <span class="stat__label">Projects Completed</span>
+                    </div>
+                    <div class="card spotlight stat reveal">
+                        <span class="stat__icon stat__icon--cyan"><i class="fas fa-layer-group"
+                                aria-hidden="true"></i></span>
+                        <span class="stat__value"><span class="count" data-count="15">15</span>+</span>
+                        <span class="stat__label">Technologies Mastered</span>
                     </div>
 
-                    <div class="about__focus">
-                        <div class="card focus reveal">
-                            <span class="focus__icon"><i class="fas fa-server" aria-hidden="true"></i></span>
-                            <h3 class="focus__title">Backend Systems</h3>
-                            <p class="focus__text">Reliable APIs, async pipelines with Celery &amp; Redis, and
-                                performance tuning at scale.</p>
-                        </div>
-                        <div class="card focus reveal">
-                            <span class="focus__icon focus__icon--violet"><i class="fas fa-wand-magic-sparkles"
-                                    aria-hidden="true"></i></span>
-                            <h3 class="focus__title">AI Products</h3>
-                            <p class="focus__text">Agentic workflows, RAG, and AI job intelligence that recruiters
-                                actually use.</p>
-                        </div>
-                        <div class="card focus reveal">
-                            <span class="focus__icon focus__icon--cyan"><i class="fas fa-people-group"
-                                    aria-hidden="true"></i></span>
-                            <h3 class="focus__title">Engineering Leadership</h3>
-                            <p class="focus__text">Leading developers through delivery, reviews, and technical
-                                direction.</p>
-                        </div>
+                    <div class="card spotlight focus reveal">
+                        <span class="focus__icon"><i class="fas fa-server" aria-hidden="true"></i></span>
+                        <h3 class="focus__title">Backend Systems</h3>
+                        <p class="focus__text">Reliable APIs, async pipelines with Celery &amp; Redis, and
+                            performance tuning at scale.</p>
+                    </div>
+                    <div class="card spotlight focus reveal">
+                        <span class="focus__icon focus__icon--violet"><i class="fas fa-wand-magic-sparkles"
+                                aria-hidden="true"></i></span>
+                        <h3 class="focus__title">AI Products</h3>
+                        <p class="focus__text">Agentic workflows, RAG, and AI job intelligence that recruiters
+                            actually use.</p>
+                    </div>
+                    <div class="card spotlight focus reveal">
+                        <span class="focus__icon focus__icon--cyan"><i class="fas fa-people-group"
+                                aria-hidden="true"></i></span>
+                        <h3 class="focus__title">Engineering Leadership</h3>
+                        <p class="focus__text">Leading developers through delivery, reviews, and technical
+                            direction.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- ============ SKILLS ============ -->
         <section class="skills section" id="skills">
             <div class="container">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">My Technical Skills</span>
-                    <h2 class="section__title">Skills</h2>
+                    <span class="section__eyebrow"><span>02</span> My Technical Skills</span>
+                    <h2 class="section__title">Skills &amp; <em class="serif">Tools</em></h2>
+                    <p class="section__lead">The stack I use to ship production backends and AI products.</p>
                 </div>
 
-                <div class="skills__grid">
+                <div class="skills__tabs reveal" role="tablist" aria-label="Filter skills by category">
+                    <button class="skills__tab is-active" type="button" role="tab" aria-selected="true"
+                        data-filter="all">All <span>29</span></button>
+                    <button class="skills__tab" type="button" role="tab" aria-selected="false"
+                        data-filter="backend"><i class="fas fa-code" aria-hidden="true"></i> Backend
+                        Development <span>6</span></button>
+                    <button class="skills__tab" type="button" role="tab" aria-selected="false" data-filter="ai"><i
+                            class="fas fa-robot" aria-hidden="true"></i> AI/Agents <span>8</span></button>
+                    <button class="skills__tab" type="button" role="tab" aria-selected="false" data-filter="db"><i
+                            class="fas fa-database" aria-hidden="true"></i> Database <span>4</span></button>
+                    <button class="skills__tab" type="button" role="tab" aria-selected="false"
+                        data-filter="cloud"><i class="fas fa-cloud" aria-hidden="true"></i> Cloud &amp;
+                        Infrastructure <span>5</span></button>
+                    <button class="skills__tab" type="button" role="tab" aria-selected="false"
+                        data-filter="other"><i class="fas fa-puzzle-piece" aria-hidden="true"></i> Other
+                        Technologies <span>6</span></button>
+                </div>
+
+                <ul class="skills__grid" id="skills-grid">
                     <!-- Backend Development -->
-                    <article class="card skills__card reveal">
-                        <header class="skills__card-head">
-                            <span class="skills__card-icon"><i class="fas fa-code" aria-hidden="true"></i></span>
-                            <h3 class="skills__title">Backend Development</h3>
-                        </header>
-                        <ul class="skills__list">
-                            <li class="skill"><i class="devicon-java-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Java</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="devicon-spring-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Spring Boot</span><span class="skill__level">Advanced</span>
-                            </li>
-                            <li class="skill"><i class="devicon-python-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Python</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="devicon-javascript-plain" aria-hidden="true"></i><span
-                                    class="skill__name">JavaScript</span><span class="skill__level">Advanced</span>
-                            </li>
-                            <li class="skill"><i class="devicon-go-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Go</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="devicon-django-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Django</span><span class="skill__level">Advanced</span></li>
-                        </ul>
-                    </article>
+                    <li class="skill" data-cat="backend"><span class="skill__icon"><i class="devicon-java-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">Java</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="backend"><span class="skill__icon"><i class="devicon-spring-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">Spring Boot</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="backend"><span class="skill__icon"><i class="devicon-python-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">Python</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="backend"><span class="skill__icon"><i
+                                class="devicon-javascript-plain colored" aria-hidden="true"></i></span><span
+                            class="skill__name">JavaScript</span><span class="skill__level"
+                            data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="backend"><span class="skill__icon"><i class="devicon-go-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">Go</span><span
+                            class="skill__level" data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="backend"><span class="skill__icon"><i class="devicon-django-plain"
+                                aria-hidden="true"></i></span><span class="skill__name">Django</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
 
                     <!-- AI/Agents -->
-                    <article class="card skills__card reveal">
-                        <header class="skills__card-head">
-                            <span class="skills__card-icon skills__card-icon--violet"><i class="fas fa-robot"
-                                    aria-hidden="true"></i></span>
-                            <h3 class="skills__title">AI/Agents</h3>
-                        </header>
-                        <ul class="skills__list">
-                            <li class="skill"><i class="devicon-azure-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Microsoft AutoGen</span><span
-                                    class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="fas fa-users-gear" aria-hidden="true"></i><span
-                                    class="skill__name">CrewAI</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="fas fa-diagram-project" aria-hidden="true"></i><span
-                                    class="skill__name">LangGraph</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="fas fa-layer-group" aria-hidden="true"></i><span
-                                    class="skill__name">QLoRA</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="fas fa-robot" aria-hidden="true"></i><span
-                                    class="skill__name">Agentic AI</span><span class="skill__level">Advanced</span>
-                            </li>
-                            <li class="skill"><i class="fas fa-comment-dots" aria-hidden="true"></i><span
-                                    class="skill__name">Prompt Engineering</span><span
-                                    class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="fas fa-database" aria-hidden="true"></i><span
-                                    class="skill__name">RAG</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="fas fa-sliders" aria-hidden="true"></i><span
-                                    class="skill__name">Fine Tuning</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                        </ul>
-                    </article>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="devicon-azure-plain" aria-hidden="true"></i></span><span
+                            class="skill__name">Microsoft AutoGen</span><span class="skill__level"
+                            data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="fas fa-users-gear" aria-hidden="true"></i></span><span
+                            class="skill__name">CrewAI</span><span class="skill__level" data-level="3">Advanced</span>
+                    </li>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="fas fa-diagram-project" aria-hidden="true"></i></span><span
+                            class="skill__name">LangGraph</span><span class="skill__level"
+                            data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="fas fa-layer-group" aria-hidden="true"></i></span><span
+                            class="skill__name">QLoRA</span><span class="skill__level"
+                            data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="fas fa-robot" aria-hidden="true"></i></span><span class="skill__name">Agentic
+                            AI</span><span class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="fas fa-comment-dots" aria-hidden="true"></i></span><span
+                            class="skill__name">Prompt Engineering</span><span class="skill__level"
+                            data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="fas fa-database" aria-hidden="true"></i></span><span
+                            class="skill__name">RAG</span><span class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="ai"><span class="skill__icon skill__icon--violet"><i
+                                class="fas fa-sliders" aria-hidden="true"></i></span><span class="skill__name">Fine
+                            Tuning</span><span class="skill__level" data-level="2">Intermediate</span></li>
 
                     <!-- Database -->
-                    <article class="card skills__card reveal">
-                        <header class="skills__card-head">
-                            <span class="skills__card-icon skills__card-icon--cyan"><i class="fas fa-database"
-                                    aria-hidden="true"></i></span>
-                            <h3 class="skills__title">Database</h3>
-                        </header>
-                        <ul class="skills__list">
-                            <li class="skill"><i class="devicon-postgresql-plain" aria-hidden="true"></i><span
-                                    class="skill__name">PostgreSQL</span><span class="skill__level">Advanced</span>
-                            </li>
-                            <li class="skill"><i class="devicon-mongodb-plain" aria-hidden="true"></i><span
-                                    class="skill__name">MongoDB</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="devicon-mysql-plain" aria-hidden="true"></i><span
-                                    class="skill__name">MySQL</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="devicon-redis-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Redis</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                        </ul>
-                    </article>
+                    <li class="skill" data-cat="db"><span class="skill__icon"><i class="devicon-postgresql-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">PostgreSQL</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="db"><span class="skill__icon"><i class="devicon-mongodb-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">MongoDB</span><span
+                            class="skill__level" data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="db"><span class="skill__icon"><i class="devicon-mysql-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">MySQL</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="db"><span class="skill__icon"><i class="devicon-redis-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">Redis</span><span
+                            class="skill__level" data-level="2">Intermediate</span></li>
 
                     <!-- Cloud & Infrastructure -->
-                    <article class="card skills__card reveal">
-                        <header class="skills__card-head">
-                            <span class="skills__card-icon skills__card-icon--amber"><i class="fas fa-cloud"
-                                    aria-hidden="true"></i></span>
-                            <h3 class="skills__title">Cloud &amp; Infrastructure</h3>
-                        </header>
-                        <ul class="skills__list">
-                            <li class="skill"><i class="fab fa-aws" aria-hidden="true"></i><span
-                                    class="skill__name">AWS</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="devicon-googlecloud-plain" aria-hidden="true"></i><span
-                                    class="skill__name">GCP</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="devicon-terraform-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Terraform</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill">
-                                <svg class="skill__svg" role="img" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <title>Hugging Face</title>
-                                    <path d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624" />
-                                </svg>
-                                <span class="skill__name">Hugging Face Spaces</span><span
-                                    class="skill__level">Advanced</span>
-                            </li>
-                            <li class="skill">
-                                <svg class="skill__svg" role="img" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <title>Vercel</title>
-                                    <path d="M24 22.525H0l12-21.05 12 21.05z" />
-                                </svg>
-                                <span class="skill__name">Vercel</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span>
-                            </li>
-                        </ul>
-                    </article>
+                    <li class="skill" data-cat="cloud"><span class="skill__icon skill__icon--amber"><i class="fab fa-aws"
+                                aria-hidden="true"></i></span><span class="skill__name">AWS</span><span
+                            class="skill__level" data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="cloud"><span class="skill__icon"><i
+                                class="devicon-googlecloud-plain colored" aria-hidden="true"></i></span><span
+                            class="skill__name">GCP</span><span class="skill__level"
+                            data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="cloud"><span class="skill__icon"><i
+                                class="devicon-terraform-plain colored" aria-hidden="true"></i></span><span
+                            class="skill__name">Terraform</span><span class="skill__level"
+                            data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="cloud"><span class="skill__icon skill__icon--amber">
+                            <svg class="skill__svg" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <title>Hugging Face</title>
+                                <path d="M12.025 1.13c-5.77 0-10.449 4.647-10.449 10.378 0 1.112.178 2.181.503 3.185.064-.222.203-.444.416-.577a.96.96 0 0 1 .524-.15c.293 0 .584.124.84.284.278.173.48.408.71.694.226.282.458.611.684.951v-.014c.017-.324.106-.622.264-.874s.403-.487.762-.543c.3-.047.596.06.787.203s.31.313.4.467c.15.257.212.468.233.542.01.026.653 1.552 1.657 2.54.616.605 1.01 1.223 1.082 1.912.055.537-.096 1.059-.38 1.572.637.121 1.294.187 1.967.187.657 0 1.298-.063 1.921-.178-.287-.517-.44-1.041-.384-1.581.07-.69.465-1.307 1.081-1.913 1.004-.987 1.647-2.513 1.657-2.539.021-.074.083-.285.233-.542.09-.154.208-.323.4-.467a1.08 1.08 0 0 1 .787-.203c.359.056.604.29.762.543s.247.55.265.874v.015c.225-.34.457-.67.683-.952.23-.286.432-.52.71-.694.257-.16.547-.284.84-.285a.97.97 0 0 1 .524.151c.228.143.373.388.43.625l.006.04a10.3 10.3 0 0 0 .534-3.273c0-5.731-4.678-10.378-10.449-10.378M8.327 6.583a1.5 1.5 0 0 1 .713.174 1.487 1.487 0 0 1 .617 2.013c-.183.343-.762-.214-1.102-.094-.38.134-.532.914-.917.71a1.487 1.487 0 0 1 .69-2.803m7.486 0a1.487 1.487 0 0 1 .689 2.803c-.385.204-.536-.576-.916-.71-.34-.12-.92.437-1.103.094a1.487 1.487 0 0 1 .617-2.013 1.5 1.5 0 0 1 .713-.174m-10.68 1.55a.96.96 0 1 1 0 1.921.96.96 0 0 1 0-1.92m13.838 0a.96.96 0 1 1 0 1.92.96.96 0 0 1 0-1.92M8.489 11.458c.588.01 1.965 1.157 3.572 1.164 1.607-.007 2.984-1.155 3.572-1.164.196-.003.305.12.305.454 0 .886-.424 2.328-1.563 3.202-.22-.756-1.396-1.366-1.63-1.32q-.011.001-.02.006l-.044.026-.01.008-.03.024q-.018.017-.035.036l-.032.04a1 1 0 0 0-.058.09l-.014.025q-.049.088-.11.19a1 1 0 0 1-.083.116 1.2 1.2 0 0 1-.173.18q-.035.029-.075.058a1.3 1.3 0 0 1-.251-.243 1 1 0 0 1-.076-.107c-.124-.193-.177-.363-.337-.444-.034-.016-.104-.008-.2.022q-.094.03-.216.087-.06.028-.125.063l-.13.074q-.067.04-.136.086a3 3 0 0 0-.135.096 3 3 0 0 0-.26.219 2 2 0 0 0-.12.121 2 2 0 0 0-.106.128l-.002.002a2 2 0 0 0-.09.132l-.001.001a1.2 1.2 0 0 0-.105.212q-.013.036-.024.073c-1.139-.875-1.563-2.317-1.563-3.203 0-.334.109-.457.305-.454m.836 10.354c.824-1.19.766-2.082-.365-3.194-1.13-1.112-1.789-2.738-1.789-2.738s-.246-.945-.806-.858-.97 1.499.202 2.362c1.173.864-.233 1.45-.685.64-.45-.812-1.683-2.896-2.322-3.295s-1.089-.175-.938.647 2.822 2.813 2.562 3.244-1.176-.506-1.176-.506-2.866-2.567-3.49-1.898.473 1.23 2.037 2.16c1.564.932 1.686 1.178 1.464 1.53s-3.675-2.511-4-1.297c-.323 1.214 3.524 1.567 3.287 2.405-.238.839-2.71-1.587-3.216-.642-.506.946 3.49 2.056 3.522 2.064 1.29.33 4.568 1.028 5.713-.624m5.349 0c-.824-1.19-.766-2.082.365-3.194 1.13-1.112 1.789-2.738 1.789-2.738s.246-.945.806-.858.97 1.499-.202 2.362c-1.173.864.233 1.45.685.64.451-.812 1.683-2.896 2.322-3.295s1.089-.175.938.647-2.822 2.813-2.562 3.244 1.176-.506 1.176-.506 2.866-2.567 3.49-1.898-.473 1.23-2.037 2.16c-1.564.932-1.686 1.178-1.464 1.53s3.675-2.511 4-1.297c.323 1.214-3.524 1.567-3.287 2.405.238.839 2.71-1.587 3.216-.642.506.946-3.49 2.056-3.522 2.064-1.29.33-4.568 1.028-5.713-.624" />
+                            </svg>
+                        </span><span class="skill__name">Hugging Face Spaces</span><span class="skill__level"
+                            data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="cloud"><span class="skill__icon">
+                            <svg class="skill__svg" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <title>Vercel</title>
+                                <path d="M24 22.525H0l12-21.05 12 21.05z" />
+                            </svg>
+                        </span><span class="skill__name">Vercel</span><span class="skill__level"
+                            data-level="2">Intermediate</span></li>
 
                     <!-- Other Technologies -->
-                    <article class="card skills__card reveal">
-                        <header class="skills__card-head">
-                            <span class="skills__card-icon skills__card-icon--rose"><i class="fas fa-puzzle-piece"
-                                    aria-hidden="true"></i></span>
-                            <h3 class="skills__title">Other Technologies</h3>
-                        </header>
-                        <ul class="skills__list">
-                            <li class="skill"><i class="fas fa-plug" aria-hidden="true"></i><span
-                                    class="skill__name">MCP</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="fas fa-check-double" aria-hidden="true"></i><span
-                                    class="skill__name">Pydantic</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="devicon-apachekafka-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Kafka</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="devicon-fastapi-plain" aria-hidden="true"></i><span
-                                    class="skill__name">FastAPI</span><span class="skill__level">Advanced</span></li>
-                            <li class="skill"><i class="fas fa-bars-staggered" aria-hidden="true"></i><span
-                                    class="skill__name">Celery</span><span
-                                    class="skill__level skill__level--mid">Intermediate</span></li>
-                            <li class="skill"><i class="devicon-git-plain" aria-hidden="true"></i><span
-                                    class="skill__name">Git</span><span class="skill__level">Advanced</span></li>
-                        </ul>
-                    </article>
-                </div>
+                    <li class="skill" data-cat="other"><span class="skill__icon skill__icon--rose"><i class="fas fa-plug"
+                                aria-hidden="true"></i></span><span class="skill__name">MCP</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="other"><span class="skill__icon skill__icon--rose"><i
+                                class="fas fa-check-double" aria-hidden="true"></i></span><span
+                            class="skill__name">Pydantic</span><span class="skill__level"
+                            data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="other"><span class="skill__icon"><i class="devicon-apachekafka-plain"
+                                aria-hidden="true"></i></span><span class="skill__name">Kafka</span><span
+                            class="skill__level" data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="other"><span class="skill__icon"><i class="devicon-fastapi-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">FastAPI</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                    <li class="skill" data-cat="other"><span class="skill__icon skill__icon--green"><i
+                                class="fas fa-bars-staggered" aria-hidden="true"></i></span><span
+                            class="skill__name">Celery</span><span class="skill__level"
+                            data-level="2">Intermediate</span></li>
+                    <li class="skill" data-cat="other"><span class="skill__icon"><i class="devicon-git-plain colored"
+                                aria-hidden="true"></i></span><span class="skill__name">Git</span><span
+                            class="skill__level" data-level="3">Advanced</span></li>
+                </ul>
             </div>
         </section>
 
-        <!-- Projects Call-to-Action -->
-        <section class="projects-cta section" aria-labelledby="projects-cta-title">
+        <!-- ============ PROJECTS ============ -->
+        <section class="projects section" id="projects">
             <div class="container">
-                <div class="projects-cta__card reveal">
+                <div class="section__head section__head--split reveal">
+                    <div>
+                        <span class="section__eyebrow"><span>03</span> Selected Work</span>
+                        <h2 class="section__title">Featured <em class="serif">Projects</em></h2>
+                    </div>
+                    <p class="section__lead">AI agents, media tools, and full-stack apps — all running live. Pick
+                        one to try it out.</p>
+                </div>
+
+                <div class="projects__grid">
+                    <a class="card spotlight project reveal" style="--accent:#22c55e"
+                        href="https://projects.kaushikpaul.co.in/alex" target="_blank" rel="noopener noreferrer">
+                        <div class="project__art"><img src="resources/projects/alex-agent.svg" alt="" width="88"
+                                height="88" loading="lazy"></div>
+                        <div class="project__body">
+                            <h3 class="project__title">Alex Agent <span>AI Financial Advisor</span></h3>
+                            <p class="project__text">Multi-agent AI financial advisor that analyzes your portfolio,
+                                plans retirement with Monte Carlo simulations, and delivers research-backed reports.</p>
+                            <ul class="project__tags">
+                                <li>Multi-agent</li>
+                                <li>AWS Serverless</li>
+                                <li>Next.js</li>
+                            </ul>
+                        </div>
+                        <span class="project__go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <a class="card spotlight project reveal" style="--accent:#6366f1"
+                        href="https://projects.kaushikpaul.co.in/ai-chat" target="_blank" rel="noopener noreferrer">
+                        <div class="project__art"><img src="resources/projects/ai-twin.svg" alt="" width="88"
+                                height="88" loading="lazy"></div>
+                        <div class="project__body">
+                            <h3 class="project__title">AI Digital Twin <span>Personalized AI Assistant</span></h3>
+                            <p class="project__text">An AI system that creates a digital twin of yourself, learning
+                                from your interactions and responding in your style.</p>
+                            <ul class="project__tags">
+                                <li>LLM</li>
+                                <li>Conversational AI</li>
+                            </ul>
+                        </div>
+                        <span class="project__go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <a class="card spotlight project reveal" style="--accent:#10b981"
+                        href="https://projects.kaushikpaul.co.in/media-toolbox-gpu" target="_blank"
+                        rel="noopener noreferrer">
+                        <div class="project__art"><img src="resources/projects/media-toolbox-gpu.svg" alt=""
+                                width="88" height="88" loading="lazy"></div>
+                        <div class="project__body">
+                            <h3 class="project__title">Media Toolbox GPU <span>AI Media Toolkit</span></h3>
+                            <p class="project__text">GPU-accelerated toolbox on Hugging Face ZeroGPU with Whisper
+                                transcription, Demucs stem separation, and Real-ESRGAN upscaling.</p>
+                            <ul class="project__tags">
+                                <li>Whisper</li>
+                                <li>Demucs</li>
+                                <li>FFmpeg</li>
+                            </ul>
+                        </div>
+                        <span class="project__go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <a class="card spotlight project reveal" style="--accent:#94a3b8"
+                        href="https://projects.kaushikpaul.co.in/cyber-security-agent" target="_blank"
+                        rel="noopener noreferrer">
+                        <div class="project__art"><img src="resources/projects/cyber-security-agent.svg" alt=""
+                                width="88" height="88" loading="lazy"></div>
+                        <div class="project__body">
+                            <h3 class="project__title">Cyber-Security Agent <span>AI Code Security Scanner</span>
+                            </h3>
+                            <p class="project__text">LLM-first agent that analyzes Python code with Semgrep and AI
+                                reasoning to produce vulnerability reports with prioritized fixes.</p>
+                            <ul class="project__tags">
+                                <li>Semgrep</li>
+                                <li>LLM</li>
+                                <li>Cloud Run</li>
+                            </ul>
+                        </div>
+                        <span class="project__go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <a class="card spotlight project reveal" style="--accent:#0ea5e9"
+                        href="https://projects.kaushikpaul.co.in/healthcare" target="_blank" rel="noopener noreferrer">
+                        <div class="project__art"><img src="resources/projects/healthcare-saas.svg" alt=""
+                                width="88" height="88" loading="lazy"></div>
+                        <div class="project__body">
+                            <h3 class="project__title">Healthcare Assistant <span>Consultation SaaS</span></h3>
+                            <p class="project__text">AI-powered SaaS that turns consultation notes into visit
+                                summaries, next steps, and patient-friendly email drafts.</p>
+                            <ul class="project__tags">
+                                <li>SaaS</li>
+                                <li>Next.js</li>
+                                <li>Auth</li>
+                            </ul>
+                        </div>
+                        <span class="project__go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <a class="card spotlight project reveal" style="--accent:#f59e0b"
+                        href="https://projects.kaushikpaul.co.in/price-is-right" target="_blank"
+                        rel="noopener noreferrer">
+                        <div class="project__art"><img src="resources/projects/price-is-right.svg" alt=""
+                                width="88" height="88" loading="lazy"></div>
+                        <div class="project__body">
+                            <h3 class="project__title">Price is Right <span>AI Deal Assistant</span></h3>
+                            <p class="project__text">AI-powered deal and contract assistant that helps create,
+                                refine, and review business deals and negotiation language.</p>
+                            <ul class="project__tags">
+                                <li>AI Assistant</li>
+                                <li>Negotiation</li>
+                            </ul>
+                        </div>
+                        <span class="project__go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+
+                <div class="projects-cta reveal">
                     <div class="projects-cta__content">
-                        <span class="section__eyebrow section__eyebrow--light">Projects</span>
-                        <h2 class="projects-cta__title" id="projects-cta-title">See More Projects</h2>
-                        <p class="projects-cta__subtitle">
-                            I maintain a dedicated showcase for all of my build-outs and experiments. Explore detailed
-                            write-ups, live demos, and repository links directly from my projects hub.
-                        </p>
+                        <h3 class="projects-cta__title">See More Projects</h3>
+                        <p class="projects-cta__subtitle">I maintain a dedicated showcase for all of my build-outs
+                            and experiments — with live demos and repository links.</p>
                     </div>
                     <div class="projects-cta__actions">
                         <a class="button button--light" href="https://projects.kaushikpaul.co.in/" target="_blank"
                             rel="noopener noreferrer">Visit Projects Site <i class="fas fa-arrow-up-right-from-square"
                                 aria-hidden="true"></i></a>
-                        <a class="button button--outline-light" href="#contact">Request a Walkthrough</a>
+                        <a class="button button--outline-light" href="https://github.com/Kaushik-Paul"
+                            target="_blank" rel="me noopener noreferrer"><i class="fab fa-github"
+                                aria-hidden="true"></i> GitHub</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Experience Section -->
+        <!-- ============ EXPERIENCE ============ -->
         <section class="experience section" id="experience">
             <div class="container">
                 <div class="section__head reveal">
-                    <span class="section__eyebrow">My Professional Journey</span>
-                    <h2 class="section__title">Experience</h2>
+                    <span class="section__eyebrow"><span>04</span> My Professional Journey</span>
+                    <h2 class="section__title">Work <em class="serif">Experience</em></h2>
                 </div>
 
-                <ol class="timeline">
-                    <li class="timeline__item timeline__item--current reveal">
-                        <span class="timeline__marker" aria-hidden="true"></span>
-                        <article class="card timeline__card">
-                            <header class="timeline__header">
-                                <div>
-                                    <h3 class="timeline__position">Software Development Engineer II</h3>
-                                    <span class="timeline__company"><i class="fas fa-building"
-                                            aria-hidden="true"></i> Instahyre</span>
-                                </div>
-                                <span class="timeline__period">Apr 2026 - Present</span>
-                            </header>
-                            <ul class="timeline__list">
-                                <li>Leading Instahyre's flagship 2026 beta release for AI-powered job creation and
-                                    recommendations, using AI-generated job intelligence to reduce job creation time by
-                                    65% and improve candidate relevancy by 45% while auto-filling role details and
-                                    improving job quality.</li>
-                                <li>Building existing-job optimization recommendations that search large candidate
-                                    datasets in real time, expanding relevant candidate pools by 40% and improving
-                                    relevancy by 30%.</li>
-                                <li>Leading 5 developers across feature delivery, blocker resolution, code and design
-                                    reviews, and technical direction to improve ownership and execution speed.</li>
-                            </ul>
-                        </article>
-                    </li>
-                    <li class="timeline__item reveal">
-                        <span class="timeline__marker" aria-hidden="true"></span>
-                        <article class="card timeline__card">
-                            <header class="timeline__header">
-                                <div>
-                                    <h3 class="timeline__position">Software Development Engineer I</h3>
-                                    <span class="timeline__company"><i class="fas fa-building"
-                                            aria-hidden="true"></i> Instahyre</span>
-                                </div>
-                                <span class="timeline__period">Jan 2023 - Apr 2026</span>
-                            </header>
-                            <ul class="timeline__list">
-                                <li>Resolved 1000+ high-priority tickets and P0/P1 bugs while shipping critical
-                                    features that improved product stability, reliability, and customer experience.
+                <div class="experience__layout">
+                    <aside class="experience__aside reveal">
+                        <div class="card exp-summary">
+                            <p class="exp-summary__value"><span class="text-gradient">4+</span> years</p>
+                            <p class="exp-summary__label">building production backends &amp; AI products</p>
+                            <ul class="exp-summary__companies">
+                                <li>
+                                    <span class="exp-summary__logo">I</span>
+                                    <div><strong>Instahyre</strong><span>Jan 2023 – Present</span></div>
                                 </li>
-                                <li>Launched the Hiring Suite for consultancies, increasing consultant retention by
-                                    30%+, enabling seamless job and candidate sharing across agency teams, and improving
-                                    hiring speed by 20%.</li>
-                                <li>Modularized scheduling system by decoupling manual booking and custom slot modules,
-                                    reducing cross-module bugs and easing future development.</li>
-                                <li>Revamped slot booking to improve candidate booking flows, eliminate race conditions,
-                                    and cut slot-fetch wait time by 45%.</li>
-                                <li>Optimized key APIs; achieved up to 73% faster responses and higher reliability.</li>
-                                <li>Built dynamic, on-the-fly email templates; boosted recruiter adoption by 60% and
-                                    reduced feature rollout time from 30 hours to 1 hour.</li>
+                                <li>
+                                    <span class="exp-summary__logo exp-summary__logo--alt">R</span>
+                                    <div><strong>Relevel by Unacademy</strong><span>Feb 2022 – Jan 2023</span></div>
+                                </li>
                             </ul>
-                        </article>
-                    </li>
-                    <li class="timeline__item reveal">
-                        <span class="timeline__marker" aria-hidden="true"></span>
-                        <article class="card timeline__card">
-                            <header class="timeline__header">
-                                <div>
-                                    <h3 class="timeline__position">Software Engineer</h3>
-                                    <span class="timeline__company"><i class="fas fa-building"
-                                            aria-hidden="true"></i> Relevel by Unacademy</span>
-                                </div>
-                                <span class="timeline__period">Jul 2022 - Jan 2023</span>
-                            </header>
-                            <ul class="timeline__list">
-                                <li>Automated educator payouts and mass class scheduling in Zoho CRM, saving 260+
-                                    person-hours monthly.</li>
-                                <li>Streamlined course purchase flow, reducing sales pitching effort by 55% while
-                                    maintaining revenue.</li>
-                                <li>Automated class setup via predefined templates and batch creation, saving ~20
-                                    person-hours weekly for operations.</li>
-                                <li>Built backend for candidate course dashboard with real-time tracking and automated
-                                    reminders, increasing attendance by 30%.</li>
-                            </ul>
-                        </article>
-                    </li>
-                    <li class="timeline__item reveal">
-                        <span class="timeline__marker" aria-hidden="true"></span>
-                        <article class="card timeline__card">
-                            <header class="timeline__header">
-                                <div>
-                                    <h3 class="timeline__position">Backend Developer Intern</h3>
-                                    <span class="timeline__company"><i class="fas fa-building"
-                                            aria-hidden="true"></i> Relevel by Unacademy</span>
-                                </div>
-                                <span class="timeline__period">Feb 2022 - Jul 2022</span>
-                            </header>
-                            <ul class="timeline__list">
-                                <li>Evaluated speech-to-text solutions (Google, AWS, Mozilla) and productionized the
-                                    best fit.</li>
-                                <li>Adapted and deployed promising open-source projects through successful
-                                    proof-of-concepts.</li>
-                            </ul>
-                        </article>
-                    </li>
-                </ol>
+                            <a href="https://storage.googleapis.com/kaushik-resources/Kaushik%20Paul%20Resume.pdf"
+                                class="button button--ghost button--block" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-file-arrow-down" aria-hidden="true"></i> Full Resume
+                            </a>
+                        </div>
+                    </aside>
+
+                    <ol class="timeline">
+                        <li class="timeline__item timeline__item--current reveal">
+                            <span class="timeline__marker" aria-hidden="true"></span>
+                            <article class="card spotlight timeline__card">
+                                <header class="timeline__header">
+                                    <div>
+                                        <h3 class="timeline__position">Software Development Engineer II</h3>
+                                        <span class="timeline__company"><i class="fas fa-building"
+                                                aria-hidden="true"></i> Instahyre</span>
+                                    </div>
+                                    <span class="timeline__period"><span class="badge__pulse"
+                                            aria-hidden="true"></span>Apr 2026 - Present</span>
+                                </header>
+                                <ul class="timeline__list">
+                                    <li>Leading Instahyre's flagship 2026 beta release for AI-powered job creation and
+                                        recommendations, using AI-generated job intelligence to reduce job creation
+                                        time by <strong>65%</strong> and improve candidate relevancy by
+                                        <strong>45%</strong> while auto-filling role details and improving job quality.
+                                    </li>
+                                    <li>Building existing-job optimization recommendations that search large candidate
+                                        datasets in real time, expanding relevant candidate pools by
+                                        <strong>40%</strong> and improving relevancy by <strong>30%</strong>.</li>
+                                    <li>Leading <strong>5 developers</strong> across feature delivery, blocker
+                                        resolution, code and design reviews, and technical direction to improve
+                                        ownership and execution speed.</li>
+                                </ul>
+                                <ul class="timeline__tags">
+                                    <li>AI Job Intelligence</li>
+                                    <li>Recommendations</li>
+                                    <li>Team Lead</li>
+                                </ul>
+                            </article>
+                        </li>
+                        <li class="timeline__item reveal">
+                            <span class="timeline__marker" aria-hidden="true"></span>
+                            <article class="card spotlight timeline__card">
+                                <header class="timeline__header">
+                                    <div>
+                                        <h3 class="timeline__position">Software Development Engineer I</h3>
+                                        <span class="timeline__company"><i class="fas fa-building"
+                                                aria-hidden="true"></i> Instahyre</span>
+                                    </div>
+                                    <span class="timeline__period">Jan 2023 - Apr 2026</span>
+                                </header>
+                                <ul class="timeline__list">
+                                    <li>Resolved <strong>1000+</strong> high-priority tickets and P0/P1 bugs while
+                                        shipping critical features that improved product stability, reliability, and
+                                        customer experience.</li>
+                                    <li>Launched the Hiring Suite for consultancies, increasing consultant retention by
+                                        <strong>30%+</strong>, enabling seamless job and candidate sharing across agency
+                                        teams, and improving hiring speed by <strong>20%</strong>.</li>
+                                    <li>Modularized scheduling system by decoupling manual booking and custom slot
+                                        modules, reducing cross-module bugs and easing future development.</li>
+                                    <li>Revamped slot booking to improve candidate booking flows, eliminate race
+                                        conditions, and cut slot-fetch wait time by <strong>45%</strong>.</li>
+                                    <li>Optimized key APIs; achieved up to <strong>73%</strong> faster responses and
+                                        higher reliability.</li>
+                                    <li>Built dynamic, on-the-fly email templates; boosted recruiter adoption by
+                                        <strong>60%</strong> and reduced feature rollout time from 30 hours to
+                                        <strong>1 hour</strong>.</li>
+                                </ul>
+                                <ul class="timeline__tags">
+                                    <li>Python</li>
+                                    <li>Django</li>
+                                    <li>API Performance</li>
+                                </ul>
+                            </article>
+                        </li>
+                        <li class="timeline__item reveal">
+                            <span class="timeline__marker" aria-hidden="true"></span>
+                            <article class="card spotlight timeline__card">
+                                <header class="timeline__header">
+                                    <div>
+                                        <h3 class="timeline__position">Software Engineer</h3>
+                                        <span class="timeline__company"><i class="fas fa-building"
+                                                aria-hidden="true"></i> Relevel by Unacademy</span>
+                                    </div>
+                                    <span class="timeline__period">Jul 2022 - Jan 2023</span>
+                                </header>
+                                <ul class="timeline__list">
+                                    <li>Automated educator payouts and mass class scheduling in Zoho CRM, saving
+                                        <strong>260+ person-hours</strong> monthly.</li>
+                                    <li>Streamlined course purchase flow, reducing sales pitching effort by
+                                        <strong>55%</strong> while maintaining revenue.</li>
+                                    <li>Automated class setup via predefined templates and batch creation, saving
+                                        <strong>~20 person-hours</strong> weekly for operations.</li>
+                                    <li>Built backend for candidate course dashboard with real-time tracking and
+                                        automated reminders, increasing attendance by <strong>30%</strong>.</li>
+                                </ul>
+                            </article>
+                        </li>
+                        <li class="timeline__item reveal">
+                            <span class="timeline__marker" aria-hidden="true"></span>
+                            <article class="card spotlight timeline__card">
+                                <header class="timeline__header">
+                                    <div>
+                                        <h3 class="timeline__position">Backend Developer Intern</h3>
+                                        <span class="timeline__company"><i class="fas fa-building"
+                                                aria-hidden="true"></i> Relevel by Unacademy</span>
+                                    </div>
+                                    <span class="timeline__period">Feb 2022 - Jul 2022</span>
+                                </header>
+                                <ul class="timeline__list">
+                                    <li>Evaluated speech-to-text solutions (Google, AWS, Mozilla) and productionized
+                                        the best fit.</li>
+                                    <li>Adapted and deployed promising open-source projects through successful
+                                        proof-of-concepts.</li>
+                                </ul>
+                            </article>
+                        </li>
+                    </ol>
+                </div>
             </div>
         </section>
 
-        <!-- FAQ Section (visible content matching FAQ schema) -->
+        <!-- ============ FAQ (visible content matching FAQ schema) ============ -->
         <section class="faq section" id="faq">
-            <div class="container faq__container">
-                <div class="section__head reveal">
-                    <span class="section__eyebrow">Frequently Asked Questions</span>
-                    <h2 class="section__title">FAQ</h2>
+            <div class="container faq__layout">
+                <div class="faq__intro reveal">
+                    <span class="section__eyebrow"><span>05</span> Frequently Asked Questions</span>
+                    <h2 class="section__title">Questions, <em class="serif">answered</em></h2>
+                    <p class="section__lead">Quick answers to what people usually ask. Want to know more? My AI
+                        assistant has read my whole résumé.</p>
+                    <a class="button button--ghost" href="https://www.ai-chat.pp.ua/" target="_blank"
+                        rel="noopener noreferrer" data-chat-open>
+                        <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Ask my AI assistant
+                    </a>
                 </div>
                 <div class="faq__list">
                     <details class="faq__item reveal">
                         <summary class="faq__question">
                             Who is Kaushik Paul?
-                            <span class="faq__toggle" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                            <span class="faq__toggle" aria-hidden="true"></span>
                         </summary>
                         <div class="faq__content">
                             <p class="faq__answer">Kaushik Paul is a Software Development Engineer II at Instahyre,
@@ -733,7 +973,7 @@
                     <details class="faq__item reveal">
                         <summary class="faq__question">
                             What does Kaushik Paul specialize in?
-                            <span class="faq__toggle" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                            <span class="faq__toggle" aria-hidden="true"></span>
                         </summary>
                         <div class="faq__content">
                             <p class="faq__answer">Building scalable backend systems, API design, AI-powered product
@@ -744,7 +984,7 @@
                     <details class="faq__item reveal">
                         <summary class="faq__question">
                             How can I contact Kaushik?
-                            <span class="faq__toggle" aria-hidden="true"><i class="fas fa-plus"></i></span>
+                            <span class="faq__toggle" aria-hidden="true"></span>
                         </summary>
                         <div class="faq__content">
                             <p class="faq__answer">Email at <a href="mailto:contact@kaushikpaul.co.in"
@@ -757,42 +997,72 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- ============ CONTACT ============ -->
         <section class="contact section" id="contact">
             <div class="container">
-                <div class="section__head reveal">
-                    <span class="section__eyebrow">Get in Touch</span>
-                    <h2 class="section__title">Contact Me</h2>
-                    <p class="section__lead">Have a role, a project, or an idea worth building? My inbox is always
-                        open.</p>
-                </div>
+                <div class="contact__panel reveal">
+                    <div class="contact__main">
+                        <span class="section__eyebrow"><span>06</span> Get in Touch</span>
+                        <h2 class="contact__title">Let's build something <em class="serif">great</em> together.</h2>
+                        <p class="contact__lead">Have a role, a project, or an idea worth building? My inbox is always
+                            open.</p>
+                        <div class="contact__email">
+                            <a href="mailto:contact@kaushikpaul.co.in" rel="me" class="contact__email-link">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                contact@kaushikpaul.co.in
+                            </a>
+                            <button class="contact__copy" type="button" id="copy-email"
+                                data-email="contact@kaushikpaul.co.in" aria-label="Copy email address">
+                                <i class="far fa-copy" aria-hidden="true"></i><span>Copy</span>
+                            </button>
+                        </div>
+                        <a href="mailto:contact@kaushikpaul.co.in" class="button button--glow" rel="me">
+                            Write me an email <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
 
-                <div class="contact__grid">
-                    <a href="mailto:contact@kaushikpaul.co.in" class="card contact__card reveal" rel="me">
-                        <span class="contact__icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
-                        <h3 class="contact__card-title">Email</h3>
-                        <span class="contact__card-data">contact@kaushikpaul.co.in</span>
-                        <span class="contact__button">Write me <i class="fas fa-arrow-right"
-                                aria-hidden="true"></i></span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/kaushik-paul-767590215" target="_blank"
-                        rel="me noopener noreferrer" class="card contact__card reveal">
-                        <span class="contact__icon contact__icon--linkedin"><i class="fab fa-linkedin-in"
-                                aria-hidden="true"></i></span>
-                        <h3 class="contact__card-title">LinkedIn</h3>
-                        <span class="contact__card-data">Kaushik Paul</span>
-                        <span class="contact__button">Connect <i class="fas fa-arrow-right"
-                                aria-hidden="true"></i></span>
-                    </a>
-                    <a href="https://github.com/Kaushik-Paul" target="_blank" rel="me noopener noreferrer"
-                        class="card contact__card reveal">
-                        <span class="contact__icon contact__icon--github"><i class="fab fa-github"
-                                aria-hidden="true"></i></span>
-                        <h3 class="contact__card-title">GitHub</h3>
-                        <span class="contact__card-data">Kaushik-Paul</span>
-                        <span class="contact__button">View Profile <i class="fas fa-arrow-right"
-                                aria-hidden="true"></i></span>
-                    </a>
+                    <div class="contact__links">
+                        <a href="https://www.linkedin.com/in/kaushik-paul-767590215" target="_blank"
+                            rel="me noopener noreferrer" class="contact__card">
+                            <span class="contact__icon contact__icon--linkedin"><i class="fab fa-linkedin-in"
+                                    aria-hidden="true"></i></span>
+                            <span class="contact__card-text">
+                                <span class="contact__card-title">LinkedIn</span>
+                                <span class="contact__card-data">Kaushik Paul</span>
+                            </span>
+                            <i class="fas fa-arrow-right contact__card-arrow" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://github.com/Kaushik-Paul" target="_blank" rel="me noopener noreferrer"
+                            class="contact__card">
+                            <span class="contact__icon contact__icon--github"><i class="fab fa-github"
+                                    aria-hidden="true"></i></span>
+                            <span class="contact__card-text">
+                                <span class="contact__card-title">GitHub</span>
+                                <span class="contact__card-data">Kaushik-Paul</span>
+                            </span>
+                            <i class="fas fa-arrow-right contact__card-arrow" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://storage.googleapis.com/kaushik-resources/Kaushik%20Paul%20Resume.pdf"
+                            target="_blank" rel="noopener noreferrer" class="contact__card">
+                            <span class="contact__icon contact__icon--resume"><i class="fas fa-file-lines"
+                                    aria-hidden="true"></i></span>
+                            <span class="contact__card-text">
+                                <span class="contact__card-title">Resume</span>
+                                <span class="contact__card-data">Download PDF</span>
+                            </span>
+                            <i class="fas fa-arrow-right contact__card-arrow" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.ai-chat.pp.ua/" target="_blank" rel="noopener noreferrer"
+                            class="contact__card" data-chat-open>
+                            <span class="contact__icon contact__icon--ai"><i class="fas fa-wand-magic-sparkles"
+                                    aria-hidden="true"></i></span>
+                            <span class="contact__card-text">
+                                <span class="contact__card-title">AI Assistant</span>
+                                <span class="contact__card-data">Ask anything, 24/7</span>
+                            </span>
+                            <i class="fas fa-arrow-right contact__card-arrow" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -800,32 +1070,38 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer__container container">
-            <div class="footer__brand">
-                <span class="nav__logo-mark">KP</span>
-                <div>
-                    <p class="footer__title">Kaushik Paul</p>
-                    <p class="footer__tagline">Backend &amp; AI Engineer</p>
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <span class="logo-mark">KP</span>
+                    <div>
+                        <p class="footer__title">Kaushik Paul</p>
+                        <p class="footer__tagline">Backend &amp; AI Engineer</p>
+                    </div>
+                </div>
+                <nav class="footer__links" aria-label="Footer">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <div class="footer__social">
+                    <a href="https://github.com/Kaushik-Paul" class="social-link" target="_blank"
+                        rel="me noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/kaushik-paul-767590215" class="social-link" target="_blank"
+                        rel="me noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:contact@kaushikpaul.co.in" class="social-link" aria-label="Email" rel="me">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
-            <nav class="footer__links" aria-label="Footer">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            <div class="footer__social">
-                <a href="https://github.com/Kaushik-Paul" class="social-link" target="_blank"
-                    rel="me noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/kaushik-paul-767590215" class="social-link" target="_blank"
-                    rel="me noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:contact@kaushikpaul.co.in" class="social-link" aria-label="Email" rel="me">
-                    <i class="fas fa-envelope"></i>
-                </a>
+            <p class="footer__wordmark" aria-hidden="true">Kaushik Paul</p>
+            <div class="footer__bottom">
+                <p class="footer__copy">&copy; <span id="footer-year">2026</span> Kaushik Paul. All rights reserved.</p>
+                <p class="footer__made">Built with care in Kolkata <i class="fas fa-heart" aria-hidden="true"></i></p>
             </div>
         </div>
-        <p class="footer__copy container">&copy; <span id="footer-year">2026</span> Kaushik Paul. All rights
-            reserved.</p>
     </footer>
 
     <!-- Scroll Top -->

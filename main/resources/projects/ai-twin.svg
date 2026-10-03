@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+  <defs>
+    <linearGradient id="twin-bg" x1="20" y1="18" x2="140" y2="142" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEF2FF"/>
+      <stop offset="1" stop-color="#C7D2FE"/>
+    </linearGradient>
+    <linearGradient id="twin-shell" x1="34" y1="32" x2="126" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2E2A85"/>
+      <stop offset="1" stop-color="#4338CA"/>
+    </linearGradient>
+  </defs>
+  <rect x="20" y="18" width="120" height="124" rx="30" fill="url(#twin-bg)"/>
+  <rect x="20.75" y="18.75" width="118.5" height="122.5" rx="29.25" stroke="#A5B4FC" stroke-opacity="0.5" stroke-width="1.5"/>
+  <rect x="34" y="32" width="92" height="96" rx="22" fill="url(#twin-shell)"/>
+  <rect x="34" y="32" width="92" height="16" rx="22" fill="#5245D3"/>
+  <circle cx="46" cy="40" r="2.5" fill="#FB7185"/>
+  <circle cx="54" cy="40" r="2.5" fill="#FBBF24"/>
+  <circle cx="62" cy="40" r="2.5" fill="#4ADE80"/>
+  <rect x="46" y="56" width="28" height="56" rx="14" fill="#FFFFFF" opacity="0.15"/>
+  <rect x="86" y="56" width="28" height="56" rx="14" fill="#FFFFFF" opacity="0.08" stroke="#FFFFFF" stroke-dasharray="4 4" stroke-width="1.5"/>
+  <circle cx="60" cy="70" r="8" fill="#FFFFFF"/>
+  <path d="M50 98c2.4-8.2 7.6-13 10-13s7.6 4.8 10 13" fill="#FFFFFF"/>
+  <circle cx="100" cy="70" r="8" fill="#FFFFFF" opacity="0.16" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <path d="M90 98c2.4-8.2 7.6-13 10-13s7.6 4.8 10 13" fill="#FFFFFF" opacity="0.12" stroke="#FFFFFF" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <path d="M74 84h12" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="80" cy="84" r="5" fill="#A5B4FC"/>
+  <path d="M76 58h8" stroke="#C7D2FE" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 4"/>
+  <path d="M76 110h8" stroke="#C7D2FE" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 4"/>
+</svg>

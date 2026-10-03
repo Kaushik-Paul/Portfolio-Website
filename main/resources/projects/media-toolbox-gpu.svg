@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+    <defs>
+        <linearGradient id="mtgpu-bg" x1="20" y1="18" x2="140" y2="142"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#D1FAE5" />
+            <stop offset="1" stop-color="#A7F3D0" />
+        </linearGradient>
+        <linearGradient id="mtgpu-shell" x1="34" y1="32" x2="126" y2="128"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#1B2434" />
+            <stop offset="1" stop-color="#101826" />
+        </linearGradient>
+        <linearGradient id="mtgpu-accent" x1="58" y1="56" x2="102" y2="104"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#34D399" />
+            <stop offset="1" stop-color="#059669" />
+        </linearGradient>
+    </defs>
+    <rect x="20" y="18" width="120" height="124" rx="30" fill="url(#mtgpu-bg)" />
+    <rect x="20.75" y="18.75" width="118.5" height="122.5" rx="29.25" stroke="#6EE7B7"
+        stroke-opacity="0.5" stroke-width="1.5" />
+    <rect x="34" y="32" width="92" height="96" rx="22" fill="url(#mtgpu-shell)" />
+    <rect x="34" y="32" width="92" height="16" rx="22" fill="#263247" />
+    <circle cx="46" cy="40" r="2.5" fill="#FB7185" />
+    <circle cx="54" cy="40" r="2.5" fill="#FBBF24" />
+    <circle cx="62" cy="40" r="2.5" fill="#4ADE80" />
+    <path d="M50 66h8M50 80h8M50 94h8M102 66h8M102 80h8M102 94h8" stroke="#6EE7B7"
+        stroke-width="3" stroke-linecap="round" />
+    <rect x="58" y="56" width="44" height="48" rx="8" fill="url(#mtgpu-accent)" />
+    <path d="M74 70l16 10-16 10z" fill="#ECFDF5" />
+    <rect x="52" y="113" width="4" height="8" rx="2" fill="#34D399" />
+    <rect x="61" y="109" width="4" height="16" rx="2" fill="#6EE7B7" />
+    <rect x="70" y="114" width="4" height="6" rx="2" fill="#059669" />
+    <rect x="79" y="108" width="4" height="18" rx="2" fill="#34D399" />
+    <rect x="88" y="112" width="4" height="10" rx="2" fill="#6EE7B7" />
+    <rect x="97" y="109" width="4" height="16" rx="2" fill="#059669" />
+    <rect x="106" y="113" width="4" height="8" rx="2" fill="#34D399" />
+</svg>
