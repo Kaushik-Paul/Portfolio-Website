@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== Local time in Kolkata =====
+    // ===== Local time in India (IST; Asia/Kolkata is the IANA zone for all of India) =====
     const localTime = document.getElementById('local-time');
     if (localTime && window.Intl) {
         const formatter = new Intl.DateTimeFormat('en-US', {
