@@ -3,6 +3,54 @@
    Design tokens → base → layout → components → sections
    ========================================================= */
 
+/* ===== FONT FALLBACKS =====
+   Local fonts resized to match the web fonts' metrics, so text keeps the same
+   footprint when Google Fonts swap in (prevents font-swap layout shift / CLS). */
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+    size-adjust: 104.98%;
+    ascent-override: 98.88%;
+    descent-override: 21.15%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback Roboto';
+    src: local('Roboto'), local('Roboto-Regular');
+    size-adjust: 105.21%;
+    ascent-override: 98.66%;
+    descent-override: 21.10%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Instrument Serif Fallback';
+    src: local('Times New Roman'), local('TimesNewRomanPSMT'), local('Liberation Serif'), local('Times');
+    size-adjust: 83.94%;
+    ascent-override: 117.94%;
+    descent-override: 36.93%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'Instrument Serif Fallback Noto';
+    src: local('Noto Serif'), local('NotoSerif');
+    size-adjust: 70.89%;
+    ascent-override: 139.65%;
+    descent-override: 43.73%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono Fallback';
+    src: local('Courier New'), local('CourierNewPSMT'), local('Liberation Mono'), local('Roboto Mono');
+    size-adjust: 99.98%;
+    ascent-override: 102.02%;
+    descent-override: 30%;
+    line-gap-override: 0%;
+}
+
 /* ===== DESIGN TOKENS ===== */
 :root {
     color-scheme: light;
@@ -49,9 +97,9 @@
     --code-border: rgba(148, 163, 184, 0.16);
 
     /* Typography */
-    --body-font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    --serif-font: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
-    --mono-font: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --body-font: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', 'Plus Jakarta Sans Fallback Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --serif-font: 'Instrument Serif', 'Instrument Serif Fallback', 'Instrument Serif Fallback Noto', 'Iowan Old Style', Georgia, serif;
+    --mono-font: 'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --normal-font-size: 1rem;
     --small-font-size: 0.875rem;
     --smaller-font-size: 0.78rem;

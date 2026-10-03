@@ -1,0 +1,11 @@
+# Keep Cloudflare's *.pages.dev copies (production alias and preview deployments)
+# out of search results so only https://www.kaushikpaul.co.in/ gets indexed.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+# Static images rarely change; let browsers and the CDN cache them for a week.
+/resources/*
+  Cache-Control: public, max-age=604800
