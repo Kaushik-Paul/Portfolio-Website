@@ -193,6 +193,7 @@
         const closeButton = root.querySelector('#chat-widget-close');
         const clearButton = root.querySelector('#chat-widget-clear');
         const sheetHandle = root.querySelector('.chat-widget__sheet-handle');
+        const backdrop = root.querySelector('#chat-widget-backdrop');
         const messagesEl = root.querySelector('#chat-widget-messages');
         const form = root.querySelector('#chat-widget-form');
         const input = root.querySelector('#chat-widget-input');
@@ -342,7 +343,10 @@
             if (isOpen) {
                 startWarmup();
                 ensureMarkdownLibraries();
-                setTimeout(() => input.focus(), 120);
+                // On phones, focusing immediately pops the keyboard over the sheet; let the user tap in.
+                if (!mobileSheetQuery.matches) {
+                    setTimeout(() => input.focus(), 120);
+                }
                 scrollToBottom();
             }
         };
@@ -441,6 +445,12 @@
         closeButton.addEventListener('click', () => {
             setOpen(false);
         });
+
+        if (backdrop) {
+            backdrop.addEventListener('click', () => {
+                setOpen(false);
+            });
+        }
 
         clearButton.addEventListener('click', () => {
             conversationVersion += 1;

@@ -1,8 +1,13 @@
 <div class="chat-widget" id="chat-widget" data-open="false">
+    <div class="chat-widget__backdrop" id="chat-widget-backdrop" aria-hidden="true"></div>
+
     <button class="chat-widget__fab" id="chat-widget-fab" type="button" aria-label="Open Kaushik AI Assistant"
         aria-controls="chat-widget-panel" aria-expanded="false">
-        <i class="fas fa-robot chat-widget__fab-icon chat-widget__fab-icon--bot" aria-hidden="true"></i>
-        <i class="fas fa-chevron-down chat-widget__fab-icon chat-widget__fab-icon--close" aria-hidden="true"></i>
+        <span class="chat-widget__fab-icons" aria-hidden="true">
+            <i class="fas fa-wand-magic-sparkles chat-widget__fab-icon chat-widget__fab-icon--bot"></i>
+            <i class="fas fa-chevron-down chat-widget__fab-icon chat-widget__fab-icon--close"></i>
+        </span>
+        <span class="chat-widget__fab-label" aria-hidden="true">Ask my AI</span>
         <span class="chat-widget__status-dot" aria-hidden="true"></span>
     </button>
 
@@ -12,32 +17,40 @@
         <header class="chat-widget__header">
             <div class="chat-widget__avatar" aria-hidden="true">
                 <i class="fas fa-robot"></i>
+                <span class="chat-widget__avatar-dot"></span>
             </div>
             <div class="chat-widget__identity">
                 <h2>Kaushik AI Assistant</h2>
                 <p><span class="chat-widget__online-dot" aria-hidden="true"></span>Online • Ask about experience,
                     projects, or contact</p>
             </div>
-            <a class="chat-widget__icon-link" href="https://www.ai-chat.pp.ua/" target="_blank"
-                rel="noopener noreferrer" aria-label="Open full screen chat">
-                <i class="fas fa-up-right-from-square" aria-hidden="true"></i>
-            </a>
-            <button class="chat-widget__icon-button" id="chat-widget-clear" type="button" aria-label="Start a new chat"
-                title="Start a new chat">
-                <i class="fas fa-rotate-left" aria-hidden="true"></i>
-            </button>
-            <button class="chat-widget__icon-button" id="chat-widget-close" type="button" aria-label="Minimize chat">
-                <i class="fas fa-minus" aria-hidden="true"></i>
-            </button>
+            <div class="chat-widget__header-actions">
+                <a class="chat-widget__icon-link" href="https://www.ai-chat.pp.ua/" target="_blank"
+                    rel="noopener noreferrer" aria-label="Open full screen chat" title="Open full screen chat">
+                    <i class="fas fa-up-right-from-square" aria-hidden="true"></i>
+                </a>
+                <button class="chat-widget__icon-button" id="chat-widget-clear" type="button"
+                    aria-label="Start a new chat" title="Start a new chat">
+                    <i class="fas fa-rotate-left" aria-hidden="true"></i>
+                </button>
+                <button class="chat-widget__icon-button" id="chat-widget-close" type="button" aria-label="Minimize chat"
+                    title="Minimize chat">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                </button>
+            </div>
         </header>
 
         <div class="chat-widget__messages" id="chat-widget-messages" aria-live="polite">
             <div class="chat-widget__intro">
+                <div class="chat-widget__intro-icon" aria-hidden="true">
+                    <i class="fas fa-hand-sparkles"></i>
+                </div>
                 <p class="chat-widget__intro-title">Hi! I'm Kaushik's AI Assistant.</p>
                 <p>I can help you learn about Kaushik's experience, projects, skills, resume, and how to get in touch.
                 </p>
             </div>
 
+            <p class="chat-widget__chips-label">Try asking</p>
             <div class="chat-widget__chips" aria-label="Suggested questions">
                 <button class="chat-widget__chip" type="button" data-prompt="Tell me about Kaushik's backend experience.">
                     <i class="fas fa-server" aria-hidden="true"></i>
@@ -67,6 +80,8 @@
                     <i class="fas fa-paper-plane" aria-hidden="true"></i>
                 </button>
             </div>
+            <p class="chat-widget__hint"><kbd>Enter</kbd> to send · <kbd>Shift</kbd> + <kbd>Enter</kbd> for a new
+                line</p>
         </form>
     </aside>
 </div>
